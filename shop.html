@@ -1,0 +1,239 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecommerce Partners — Credit Line</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0d6efd;
+      --accent: #6610f2;
+      --muted: #f5f7fb;
+      --text: #212529;
+      --card-bg: #fff;
+      --radius: 14px;
+      --shadow: 0 4px 15px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    * { box-sizing: border-box; margin:0; padding:0; font-family:'Inter',sans-serif; }
+    body { background: linear-gradient(135deg,#f5f7fb,#e8edf7); color: var(--text); line-height:1.5; }
+
+    /* Topbar */
+    .topbar {
+      background: linear-gradient(90deg,var(--primary),var(--accent));
+      color:#fff;
+      padding:15px 20px;
+      display:flex;
+      justify-content:flex-start;
+      align-items: centre;
+      gap:16px;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+    .topbar .back { color:#fff; text-decoration:none; font-size:16px; }
+    .topbar .logo { color:#fff; text-decoration:none; font-weight:700; font-size:18px; }
+
+    /* Container */
+    .container { max-width:1100px; margin:30px auto; padding:0 20px; }
+    .container h1 {
+      text-align:center;
+      font-size:28px;
+      color:var(--primary);
+      margin-bottom:8px;
+      font-weight:800;
+    }
+    .container p.description {
+      text-align:center;
+      font-size:14px;
+      color:#555;
+      line-height:1.5;
+      margin-bottom:25px;
+      max-width:500px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    /* Cards */
+    .card-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:18px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding:16px 18px;
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover { transform: translateY(-6px) scale(1.02); box-shadow: var(--shadow-hover); }
+    .card img { width:70px; height:70px; object-fit:contain; margin-bottom:10px; }
+    .card h3 { font-size:20px; margin-bottom:6px; font-weight:700; }
+    .card p { font-size:13px; margin-bottom:12px; color:#555; }
+
+    /* Premium Button */
+    .apply-btn {
+      display:inline-block;
+      padding:10px 20px;
+      background: linear-gradient(135deg,#6610f2,#0d6efd);
+      color:#fff;
+      text-decoration:none;
+      border-radius:16px;
+      font-weight:700;
+      font-size:0.95rem;
+      box-shadow:0 6px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    .apply-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+      background: linear-gradient(135deg,#0d6efd,#6610f2);
+    }
+
+    /* Footer */
+    .footer {
+      background:#212529;
+      color:#fff;
+      text-align:center;
+      padding:20px;
+      margin-top:30px;
+      border-radius:12px 12px 0 0;
+    }
+    .whatsapp-btn {
+      display:inline-block;
+      margin-top:10px;
+      background:#25D366;
+      color:#fff;
+      padding:12px 20px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:600;
+      transition: all 0.2s ease;
+    }
+    .whatsapp-btn:hover { background:#1ebe5d; }
+
+    /* Mobile Layout */
+    @media(max-width:520px){
+      .card-grid { display:flex; flex-direction:column; gap:12px; }
+      .card { flex-direction:row; align-items:center; justify-content:space-between; text-align:left; padding:10px 12px; }
+      .card img { width:50px; height:50px; margin-right:12px; }
+      .card-body { flex:1; display:flex; flex-direction:column; gap:4px; }
+      .card p { font-size:12px; margin-top:2px; color:#555; }
+      .apply-btn { padding:6px 10px; font-size:0.85rem; min-width:80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <a class="back" href="index.html">← Back</a>
+    <a class="logo" href="index.html">Credit Line</a>
+  </div>
+
+  <!-- Container -->
+  <div class="container">
+    <h1>Ecommerce Partners</h1>
+    <p class="description">
+      Trusted partners for online shopping.<br>
+      Grab top deals via our affiliate links.
+    </p>
+
+    <div class="card-grid">
+
+     <!-- Club Style -->
+<div class="card">
+  <img src="CLUBSTYLE.jfif" alt="Club Style">
+  <div class="card-body">
+    <h3>Club Style</h3>
+    <p>Premium made in india Store</p>
+  </div>
+  <a href="https://rapidstore.in/R2916132" target="_blank" class="apply-btn">Shop Now</a>
+</div>
+ <!-- Flipkart -->
+      <div class="card">
+        <img src="s1.jpeg" alt="Flipkart">
+        <div class="card-body">
+          <h3>Flipkart</h3>
+          <p>Top Deals, Electronics & Fashion</p>
+        </div>
+        <a href="https://fktr.in/cWjZN9S" target="_blank" class="apply-btn">Shop Now</a>
+      </div>
+
+      <!-- Myntra -->
+      <div class="card">
+        <img src="s2.jpeg" alt="Myntra">
+        <div class="card-body">
+          <h3>Myntra</h3>
+          <p>Clothing, Beauty & Lifestyle</p>
+        </div>
+        <a href="https://myntr.it/qzFQ5eW" target="_blank" class="apply-btn">Shop Now</a>
+      </div>
+
+      <!-- Ajio -->
+      <div class="card">
+        <img src="s3.png" alt="Ajio">
+        <div class="card-body">
+          <h3>Ajio</h3>
+          <p>Fashion & Accessories</p>
+        </div>
+        <a href="https://ajiio.in/yv3dYtb" target="_blank" class="apply-btn">Shop Now</a>
+      </div>
+
+      <!-- Mamaearth -->
+      <div class="card">
+        <img src="s4.png" alt="Mamaearth">
+        <div class="card-body">
+          <h3>Mamaearth</h3>
+          <p>Skin & Personal Care</p>
+        </div>
+        <a href="https://bitli.in/qrC5a50" target="_blank" class="apply-btn">Shop Now</a>
+      </div>
+
+      <!-- Shopsy -->
+      <div class="card">
+        <img src="s5.png" alt="Shopsy">
+        <div class="card-body">
+          <h3>Shopsy</h3>
+          <p>Easy Online Shopping</p>
+        </div>
+        <a href="https://bitli.in/pijSI85" target="_blank" class="apply-btn">Shop Now</a>
+      </div>
+
+      <!-- FixDerma -->
+      <div class="card">
+        <img src="s6.png" alt="FixDerma">
+        <div class="card-body">
+          <h3>FixDerma</h3>
+          <p>Skin & Hair Care</p>
+        </div>
+        <a href="https://bitli.in/oOcn15Y" target="_blank" class="apply-btn">Shop Now</a>
+      </div>
+
+      <!-- MuscleBlaze -->
+      <div class="card">
+        <img src="s7.png" alt="MuscleBlaze">
+        <div class="card-body">
+          <h3>MuscleBlaze</h3>
+          <p>Fitness & Nutrition</p>
+        </div>
+        <a href="https://bitli.in/OHq90E3" target="_blank" class="apply-btn">Shop Now</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>📞 Need Help? Chat with us on WhatsApp</p>
+    <a class="whatsapp-btn" href="https://wa.me/919610841436" target="_blank">💬 Chat on WhatsApp</a>
+  </div>
+
+</body>
+</html>

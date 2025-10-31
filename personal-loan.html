@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Loans — Credit Line</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary:#6610f2;
+  --accent:#0d6efd;
+  --muted:#666;
+  --card-bg:#ffffff;
+  --page-bg:#f5f7fb;
+  --radius:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--page-bg);color:#222;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+
+.topbar{background:linear-gradient(90deg,var(--accent),var(--primary));color:#fff;padding:14px 20px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;}
+.topbar a.logo{color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;}
+.topbar .back{background:rgba(255,255,255,0.12);padding:8px 10px;border-radius:8px;text-decoration:none;color:#fff;font-weight:600;}
+
+.container{max-width:1100px;margin:24px auto;padding:0 18px 60px;}
+.heading{text-align:center;margin-bottom:14px;}
+.heading h1{font-size:1.6rem;color:var(--primary);font-weight:800;}
+.heading p{color:var(--muted);margin-top:6px;font-size:0.95rem;}
+
+.filters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px;justify-content:center;}
+.filters select, .filters input{padding:8px 12px;border-radius:8px;border:1px solid #ccc;font-size:0.95rem;}
+.filters button{padding:8px 12px;border-radius:8px;border:none;background:var(--primary);color:#fff;font-weight:700;cursor:pointer;transition:transform 0.15s ease;}
+.filters button:hover{transform:translateY(-2px);}
+.filters-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;width:100%;}
+.filters-row select{flex:1; min-width:140px;}
+.filters-row input{flex:2; min-width:200px;}
+
+.grid{display:grid;grid-template-columns:1fr;gap:16px;}
+.card{background:var(--card-bg);border-radius:var(--radius);padding:14px;box-shadow:0 6px 20px rgba(20,20,40,0.06);display:flex;gap:12px;align-items:flex-start;transition:transform .18s ease,box-shadow .18s ease;flex-direction:row;}
+.card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(20,20,40,0.09);}
+.bank-logo{width:64px;height:64px;border-radius:12px;background:#f1f3f7;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
+.bank-logo img{width:100%;height:100%;object-fit:contain;padding:5px;}
+.card-body{flex:1;display:flex;flex-direction:column;gap:6px;}
+.card-title{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.card-title h3{font-size:1rem;margin:0;font-weight:700;color:#111;}
+.card-docs{font-size:0.85rem;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-start;}
+.card-docs span{background:#eef2ff;color:var(--primary);padding:4px 8px;border-radius:6px;font-weight:600;}
+.card-footer{margin-top:10px;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;width:100%;}
+.apply-btn{background:linear-gradient(90deg,var(--accent),var(--primary));color:#fff;border:0;padding:12px 0;border-radius:8px;font-weight:700;text-decoration:none;display:block;width:100%;text-align:center;}
+
+footer{margin-top:40px;background:#343a40;color:#fff;padding:20px;text-align:center;border-radius:12px 12px 0 0;}
+footer .footer-cta p{font-size:0.95rem;margin-bottom:10px;line-height:1.4;}
+footer .whatsapp-btn{display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:10px 18px;border-radius:8px;text-decoration:none;transition:transform 0.15s ease;}
+footer .whatsapp-btn:hover{transform:translateY(-3px);}
+
+@media(max-width:520px){
+  .card{flex-direction:row;align-items:center;}
+  .bank-logo{width:56px;height:56px;}
+  .card-body{flex:1;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back" href="index.html" title="Back to home">← Back</a>
+  <a class="logo" href="index.html">Credit Line</a>
+</div>
+
+<main class="container">
+  <div class="heading">
+    <h1>Personal Loans</h1>
+    <p>Compare top personal loans & easy apply</p>
+  </div>
+
+  <div class="filters">
+    <div class="filters-row">
+      <select id="employmentFilter">
+        <option value="all">All Employment Types</option>
+        <option value="salaried">Salaried</option>
+        <option value="self-employed">Self Employed</option>
+        <option value="student">Student</option>
+      </select>
+      <select id="interestFilter">
+        <option value="all">Sort by Interest Rate</option>
+        <option value="low">Low to High</option>
+        <option value="high">High to Low</option>
+      </select>
+      <input type="text" id="searchInput" placeholder="Search by product name...">
+      <button id="resetFilters">Reset Filters</button>
+    </div>
+  </div>
+
+  <section class="grid" id="loanGrid"></section>
+</main>
+
+<footer>
+  <div class="footer-cta">
+    <p><strong>Need help choosing a loan?</strong><br>Chat with Raj on WhatsApp for guidance and personalised suggestions.</p>
+    <a class="whatsapp-btn" href="https://wa.me/919610841436" target="_blank" rel="noopener">Chat on WhatsApp</a>
+  </div>
+  <p style="margin-top:12px; font-size:0.8em; text-align:center;">© 2025 Credit Line</p>
+</footer>
+
+<script>
+const loans = [
+  {name:"Poonawalla Fincorp Personal Loan",link:"https://leads.banksathi.com/?h=TWJRbDJWdFU0WldLdnVVYkdRay9ZQT09",employment:"salaried,self-employed",interest:16,approval:"Excellent",amount:"upto 5 lakh"},
+  {name:"Prefr",link:"https://loan.gromo.in/pf/V-aqzOog-K",employment:"salaried,self-employed",interest:18,approval:"Excellent",amount:"upto 5 lakh"},
+  {name:"KreditBee",link:"https://loan.gromo.in/kb/V-aqzOog-K",employment:"salaried,self-employed",interest:16,approval:"Excellent",amount:"upto 5 lakh"},
+  {name:"Hero Instant Personal Loan",link:"https://leads.banksathi.com/?h=UTZodHdiVnB5WEdmbWU0clF0MTMydz09",employment:"salaried,self-employed",interest:19,approval:"Good",amount:"upto 5 lakh"},
+  {name:"Unity SFB Personal Loan",link:"https://leads.banksathi.com/?h=cHlseDFVY09ZVkFiUy9TOXRlZlNpZz09",employment:"salaried,self-employed",interest:16,approval:"Good",amount:"upto 5 lakh"},
+  {name:"Moneyview Personal Loan",link:"https://loan.gromo.in/mv/V-aqzOog-K",employment:"salaried,self-employed",interest:16,approval:"Excellent",amount:"upto 5 lakh"},
+  {name:"Aditya Birla Personal Loan",link:"https://loan.gromo.in/zc/V-aqzOog-K",employment:"salaried,self-employed",interest:13,approval:"Good",amount:"upto 5 lakh"},
+  {name:"Incred Personal Loan",link:"https://leads.banksathi.com/?h=R3hTQWs3Y2RvaDVzMTUvUjc2dnlCUT09",employment:"salaried,self-employed",interest:13,approval:"Excellent",amount:"upto 5 lakh"},
+  {name:"Bharat Loan",link:"https://loan.gromo.in/bt/V-aqzOog-K",employment:"salaried",interest:36,approval:"Good",amount:"upto 1 lakh"},
+  {name:"IDFC First Bank Personal Loan",link:"https://loan.gromo.in/lo/V-aqzOog-K",employment:"salaried,self-employed",interest:9.99,approval:"Good",amount:"upto 10 lakh"},
+  {name:"Kissht Personal Loan",link:"https://loan.gromo.in/kh/V-aqzOog-K",employment:"salaried",interest:14,approval:"Good",amount:"upto 5 lakh"},
+  {name:"Rupee 112 Personal loan",link:"https://loan.gromo.in/ru/V-aqzOog-K",employment:"salaried",interest:36,approval:"Good",amount:"upto 1 lakh"},
+  {name:"Myflot Personal Loan",link:"https://leads.banksathi.com/?h=cWxROXJTRHpoYjlxT284cHg2WktDdz09",employment:"salaried",interest:24,approval:"Good",amount:"upto 1 lakh"},
+  {name:"Smartcoin",link:"https://loan.gromo.in/sn/V-aqzOog-K",employment:"salaried,self-employed",interest:24,approval:"Good",amount:"upto 1 lakh"},
+  {name:"HDFC insta jumbo loan",link:"https://leads.banksathi.com/?h=QlZBMEZic05zVlN0Z05xUGtXZWxCQT09",employment:"salaried,self-employed",interest:12,approval:"Good",amount:"upto 10 lakh"},
+  {name:"Induslnd Personal Loan",link:"https://loan.gromo.in/ip/V-aqzOog-K",employment:"salaried,self-employed",interest:10.49,approval:"Good",amount:"upto 5 lakh"},
+  {name:"Loan 112 Personal loan",link:"https://loan.gromo.in/ln/V-aqzOog-K",employment:"salaried,self-employed",interest:36,approval:"Good",amount:"upto 1 lakh"},
+  {name:"Abhiloans - Loan Againts mutual fund",link:"https://sales.gromo.in/m/V-aqzOog-K",employment:"student,salaried,self-employed",interest:8,approval:"Excellent",amount:"upto 1 cr"},
+  {name:"Zype Personal Loan",link:"https://loan.gromo.in/zy/V-aqzOog-K",employment:"salaried",interest:18,approval:"Good",amount:"upto 5 lakh"},
+  {name:"Fi Money Personal Loan",link:"https://loan.gromo.in/ml/V-aqzOog-K",employment:"salaried",interest:9.6,approval:"Excellent",amount:"upto 5 lakh"},
+  {name:"mPokket Personal Loan",link:"https://loan.gromo.in/mp/V-aqzOog-K",employment:"student,salaried,self-employed",interest:24,approval:"Good",amount:"upto 20000"}
+];
+
+// Reverse order image sources as provided
+const imageSources = [
+"l1.svg","l2.png","l3.jpg","l4.jpg","l5.svg","l6.png","l7.jfif","l8.png",
+"l9.jfif","l10.jfif","l11.png","l12.jfif","l13.jfif","l14.png","l15.jfif",
+"l16.jfif","l17.png","l18.png","l19.png","l20.png","l21.png"
+];
+
+const grid = document.getElementById('loanGrid');
+const employmentFilter = document.getElementById('employmentFilter');
+const interestFilter = document.getElementById('interestFilter');
+const searchInput = document.getElementById('searchInput');
+const resetBtn = document.getElementById('resetFilters');
+
+function renderLoans(loansToRender){
+  grid.innerHTML = '';
+  loansToRender.forEach((loan, idx) => {
+    const card = document.createElement('article');
+    card.className = 'card';
+    const imgSrc = imageSources[idx] || "l1.svg"; // fallback if more products than images
+    card.innerHTML = `
+      <div class="bank-logo"><img src="${imgSrc}" alt="${loan.name} Logo"></div>
+      <div class="card-body">
+        <div class="card-title"><h3>${loan.name}</h3></div>
+        <div class="card-docs">
+          <span>PAN Card</span>
+          <span>KYC Documents</span>
+          <span>Other Docs</span>
+        </div>
+        <div class="card-meta">Interest Rate: ${loan.interest}% p.a. | Approval: ${loan.approval} | Amount: ${loan.amount}</div>
+        <div class="card-footer">
+          <a class="apply-btn" href="${loan.link}" target="_blank" rel="noopener">Apply Now</a>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filterAndSearch(){
+  let filtered = [...loans];
+  const empVal = employmentFilter.value;
+  const interestVal = interestFilter.value;
+  const searchVal = searchInput.value.toLowerCase();
+  if(empVal !== 'all') filtered = filtered.filter(loan => loan.employment.toLowerCase().includes(empVal));
+  if(searchVal) filtered = filtered.filter(loan => loan.name.toLowerCase().includes(searchVal));
+  if(interestVal==='low') filtered.sort((a,b)=>a.interest-b.interest);
+  else if(interestVal==='high') filtered.sort((a,b)=>b.interest-a.interest);
+  renderLoans(filtered);
+}
+
+employmentFilter.addEventListener('change', filterAndSearch);
+interestFilter.addEventListener('change', filterAndSearch);
+searchInput.addEventListener('input', filterAndSearch);
+resetBtn.addEventListener('click', ()=>{
+  employmentFilter.value='all';
+  interestFilter.value='all';
+  searchInput.value='';
+  renderLoans(loans);
+});
+
+renderLoans(loans);
+</script>
+
+</body>
+</html>

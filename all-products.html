@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Products - Credit Line</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter', sans-serif; background:#f7f8fc; color:#333; }
+
+  /* Header */
+  header {
+    display:flex; align-items:center; gap:10px;
+    position:sticky; top:0; z-index:1000;
+    background: linear-gradient(90deg,#0d6efd,#6610f2);
+    color:#fff; padding:14px 15px; font-weight:700; font-size:1.1rem;
+    box-shadow:0 6px 12px rgba(0,0,0,0.15);
+  }
+  .back-button {
+    display:flex; align-items:center; justify-content:center;
+    width:32px; height:32px; background:rgba(255,255,255,0.2);
+    border-radius:50%; cursor:pointer; transition:0.3s;
+  }
+  .back-button:hover { background:rgba(255,255,255,0.4); }
+
+  /* Search */
+  .search-filter {
+    max-width:600px; margin:15px auto; display:flex; gap:10px;
+    padding:0 15px; flex-wrap:wrap;
+  }
+  .search-filter input, .search-filter select {
+    flex:1; padding:10px 12px; border-radius:12px; border:1px solid #ccc;
+    font-size:0.95rem; background:#fff;
+  }
+  .search-filter input:focus, .search-filter select:focus {
+    outline:none; border-color:#0d6efd;
+  }
+
+  /* Product List */
+  .product-grid {
+    display:flex; flex-direction:column;
+    gap:12px; max-width:600px; margin:0 auto; padding:0 15px 20px;
+  }
+  .product-card {
+    background:#fff; border-radius:14px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 15px; box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    transition:0.3s;
+  }
+  .product-card:hover {
+    transform:scale(1.02);
+    box-shadow:0 6px 16px rgba(0,0,0,0.1);
+  }
+  .product-info {
+    display:flex; align-items:center; gap:14px;
+  }
+  .product-card img {
+    width:40px; height:40px;
+  }
+  /* 🎨 Product Name Color */
+  .product-card h4 {
+    font-size:0.95rem; font-weight:600;
+    background: linear-gradient(90deg, #0d6efd, #6610f2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition:0.3s;
+  }
+  .product-card:hover h4 {
+    background: linear-gradient(90deg, #6610f2, #0d6efd);
+  }
+
+  .get-now {
+    background:#0d6efd; color:#fff;
+    padding:8px 14px; border:none;
+    border-radius:25px; cursor:pointer;
+    font-weight:600; font-size:0.8rem;
+    transition:0.3s;
+  }
+  .get-now:hover {
+    background:#004aad;
+  }
+
+  @media(max-width:480px){
+    .product-card h4 { font-size:0.9rem; }
+    .get-now { padding:7px 12px; font-size:0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="back-button" onclick="history.back()">←</div>
+  <span>All Products</span>
+</header>
+
+<div class="search-filter">
+  <input type="text" id="searchInput" placeholder="Search products...">
+  <select id="categoryFilter">
+    <option value="All">All Categories</option>
+    <option value="Credit Card">Credit Card</option>
+  </select>
+</div>
+
+<div class="product-grid" id="productGrid"></div>
+
+<script>
+const products = [
+  { name:'Axis MyZone Credit Card', link:'https://bitli.in/iPoFfxB', category:'Credit Card' },
+  { name:'HSBC Platinum Credit Card', link:'https://bitli.in/vTmc7lo', category:'Credit Card' },
+  { name:'Axis Flipkart Credit Card Store', link:'https://bitli.in/py1x8n8', category:'Credit Card' },
+  { name:'SBI Cashback Credit Card', link:'https://bitli.in/ByrcGNl', category:'Credit Card' },
+  { name:'FIRSTmoney vy IDFC Bank', link:'https://bitli.in/b2zwNz1', category:'Credit Card' },
+  { name:'Axis Privilege Credit Card', link:'https://bitli.in/9QM1NWM', category:'Credit Card' },
+  { name:'Axis Mangus Credit Card Store', link:'https://bitli.in/xa3h0qW', category:'Credit Card' },
+  { name:'Axis Indian OIl Credit Card', link:'https://bitli.in/CZB3wN7', category:'Credit Card' },
+  { name:'Axis Indian Oil Rupay Credit Card', link:'https://bitli.in/j950Iaf', category:'Credit Card' },
+  { name:'Axis Airtel Credit Card', link:'https://bitli.in/NjhH30E', category:'Credit Card' },
+  { name:'Axis Lic Signature Credit Card', link:'https://bitli.in/ICfp9be', category:'Credit Card' },
+  { name:'Axis Lic Platinum Credit Card', link:'https://bitli.in/gDF060J', category:'Credit Card' },
+  { name:'IDFC First Power Credit Card', link:'https://bitli.in/vE2ONcZ', category:'Credit Card' },
+  { name:'IDFC First Power Plus Credit Card', link:'https://bitli.in/4i71wJJ', category:'Credit Card' },
+  { name:'IDFC First Credit Card', link:'https://bitli.in/45f5N5T', category:'Credit Card' },
+  { name:'IDFC First Bank Mayura Credit Card', link:'https://bitli.in/fcCnJwp', category:'Credit Card' },
+  { name:'HSBC Live Plus Credit Card', link:'https://bitli.in/vi1XN4i', category:'Credit Card' },
+  { name:'HSBC Travel One Credit Card', link:'https://bitli.in/sbq9rr7', category:'Credit Card' }
+];
+
+const productGrid = document.getElementById('productGrid');
+
+function createCard(product){
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.innerHTML = `
+    <div class="product-info">
+      <img src="https://cdn.jsdelivr.net/npm/lucide-static/icons/credit-card.svg" alt="${product.name}">
+      <h4>${product.name}</h4>
+    </div>
+    <a href="${product.link}" target="_blank">
+      <button class="get-now">Apply</button>
+    </a>
+  `;
+  return card;
+}
+
+function displayProducts(list){
+  productGrid.innerHTML = '';
+  const fragment = document.createDocumentFragment();
+  list.forEach(p => fragment.appendChild(createCard(p)));
+  productGrid.appendChild(fragment);
+}
+
+const searchInput=document.getElementById('searchInput');
+const categoryFilter=document.getElementById('categoryFilter');
+
+function filterProducts(){
+  const searchTerm=searchInput.value.toLowerCase();
+  const category=categoryFilter.value;
+  const filtered=products.filter(p=>
+    p.name.toLowerCase().includes(searchTerm) &&
+    (category==='All' || p.category===category)
+  );
+  displayProducts(filtered);
+}
+
+searchInput.addEventListener('input',filterProducts);
+categoryFilter.addEventListener('change',filterProducts);
+
+displayProducts(products);
+</script>
+
+</body>
+</html>
