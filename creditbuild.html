@@ -1,89 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Credit Builder Membership</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Builder Membership - Credit Line</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #eaf2ff, #ffffff);
-      color: #1e293b;
+      background: linear-gradient(180deg, #e8f0ff, #ffffff);
+      color: #1e3a8a;
+    }
+
+    /* Header back button container */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      padding: 10px 15px;
+      z-index: 50;
       display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      align-items: center;
+      gap: 10px;
     }
 
-    .btn {
-      background: linear-gradient(90deg, #007bff, #00b4d8);
+    .back-btn {
+      background: #2563eb;
       color: white;
+      padding: 8px 14px;
+      border-radius: 10px;
       font-weight: 600;
-      padding: 12px 30px;
-      border-radius: 9999px;
-      display: inline-block;
+      box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    header h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      flex-grow: 1;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    }
+
+    /* Premium animated button */
+    .glow-btn {
+      background: linear-gradient(90deg, #2563eb, #1d4ed8, #3b82f6);
+      background-size: 300% 300%;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      animation: glow 3s ease infinite;
+      box-shadow: 0 0 18px rgba(37, 99, 235, 0.5);
+      display: inline-block;
+    }
+
+    @keyframes glow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .glow-btn:hover {
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      box-shadow: 0 0 25px rgba(37, 99, 235, 0.8);
       position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-    }
-
-    /* Star glow effect */
-    .btn::before {
-      content: "✨";
-      position: absolute;
-      top: 8px;
-      left: 15px;
-      animation: sparkle 2s infinite ease-in-out;
-    }
-
-    @keyframes sparkle {
-      0%, 100% { opacity: 0; transform: scale(0.8) rotate(0deg); }
-      50% { opacity: 1; transform: scale(1.2) rotate(15deg); }
     }
 
     footer {
-      font-size: 14px;
-      color: #64748b;
+      background: #1e3a8a;
+      color: white;
       text-align: center;
-      margin-top: auto;
-      padding: 15px 10px;
-      border-top: 1px solid #e2e8f0;
-      background: #f8fafc;
+      padding: 20px 15px;
+      font-size: 14px;
+      margin-top: 50px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Back Button -->
-  <div class="p-4">
-    <a href="index.html" class="text-blue-600 font-semibold flex items-center gap-2">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-      </svg>
-      Back
-    </a>
-  </div>
+  <!-- Header with Back Button -->
+  <header>
+    <a href="index.html" class="back-btn">← Back</a>
+    <h1>Credit Builder Membership</h1>
+  </header>
 
-  <main class="flex-1 px-6 pb-8">
-    <section class="text-center">
-      <h1 class="text-2xl sm:text-3xl font-bold text-blue-700 mb-3 whitespace-nowrap">
-        Credit Builder Membership
-      </h1>
-      <p class="text-gray-600 mb-6">Quickly Boost Your Credit Score with Credit Builder Membership</p>
+  <!-- Main Content -->
+  <div class="max-w-lg mx-auto mt-28 text-center px-6">
+    <p class="text-gray-700 mb-6">
+      Quickly Boost Your Credit Score with Credit Builder Membership
+    </p>
 
-      <!-- Top Join Button -->
-      <a href="https://wee.bnking.in/c/NjE3Yzk5N" target="_blank" class="btn mb-6">Click Here to Join Membership</a>
-    </section>
+    <a href="https://wee.bnking.in/c/NjE3Yzk5N" target="_blank" class="glow-btn mb-8">Click Here to Join Membership</a>
 
-    <section class="bg-white rounded-2xl shadow-md p-6">
-      <h2 class="text-xl font-semibold text-blue-700 mb-4">Why choose Credit Builder Membership?</h2>
-      <ul class="space-y-2 text-gray-700">
+    <div class="text-left bg-white rounded-2xl shadow-md p-5 border border-gray-100">
+      <h2 class="text-xl font-semibold text-blue-800 mb-3">Why choose Credit Builder Membership?</h2>
+      <ul class="list-disc ml-5 text-gray-700 leading-relaxed">
         <li>💰 Get Credit Builder Loan of ₹500 for eligible members</li>
         <li>💵 Repay loan in small EMIs of ₹175 over 3 months</li>
         <li>🛍️ Get an Amazon voucher of ₹175 every time you pay your EMI</li>
@@ -92,57 +114,36 @@
         <li>✅ No income proof required to apply</li>
       </ul>
 
-      <h2 class="text-xl font-semibold text-blue-700 mt-6 mb-3">Why you should apply from here:</h2>
-      <ul class="space-y-2 text-gray-700">
-        <li>✔️ 100% online process</li>
-        <li>✔️ Minimal documentation</li>
+      <h2 class="text-xl font-semibold text-blue-800 mt-6 mb-3">Eligibility Criteria</h2>
+      <ul class="list-disc ml-5 text-gray-700 leading-relaxed">
+        <li>Age Group: 18 - 65 years</li>
+        <li>Customer must have a stable source of income</li>
+        <li>Documents Required: Identity proof & PAN Card</li>
       </ul>
-    </section>
 
-    <section class="bg-white rounded-2xl shadow-md p-6 mt-6">
-      <h2 class="text-xl font-semibold text-blue-700 mb-4">Eligibility Criteria</h2>
-      <ul class="space-y-2 text-gray-700">
-        <li>👤 Age Group: 18 - 65 years</li>
-        <li>💼 Income Range: Customer must have a stable source of income</li>
-        <li>🪪 Documents Required: Identity proof & PAN Card</li>
-      </ul>
-    </section>
-
-    <section class="bg-white rounded-2xl shadow-md p-6 mt-6">
-      <h2 class="text-xl font-semibold text-blue-700 mb-4">Brand Benefits</h2>
-      <ul class="space-y-2 text-gray-700">
+      <h2 class="text-xl font-semibold text-blue-800 mt-6 mb-3">Highlights</h2>
+      <ul class="list-disc ml-5 text-gray-700 leading-relaxed">
         <li>⚡ Build 750+ Credit Score with no deposit required</li>
-        <li>📊 See improvement in just 30 days</li>
-        <li>💳 Get ₹500 Credit Builder Loan</li>
-        <li>💵 Pay small EMI of ₹175 for 3 months</li>
-        <li>🎁 Get ₹175 Amazon voucher for every EMI</li>
-        <li>🎓 Access expert consultation & videos</li>
-        <li>🆓 No income proof required</li>
-        <li>💸 One-time joining fee: ₹500</li>
-        <li>💰 Monthly membership fee: ₹99</li>
+        <li>📈 Start seeing your credit score improve in just 30 days</li>
+        <li>💳 Credit builder loan of ₹500 designed to build your Credit score</li>
+        <li>💵 Pay back small loan EMI of ₹175 over three months</li>
+        <li>🎁 Get ₹175 Amazon voucher every time you pay your EMI on time</li>
+        <li>👨‍🏫 Exclusive access to expert consultation and educational videos</li>
+        <li>🧾 One-time joining fee ₹500, monthly membership ₹99</li>
+        <li>💡 Spend only ₹99 net per month (after vouchers)</li>
       </ul>
-      <p class="text-sm text-gray-600 mt-3">
-        Spend only ₹99/month — You get ₹500 loan & ₹175 Amazon voucher back every EMI!
-      </p>
-    </section>
 
-    <!-- Bottom Join Button -->
-    <div class="text-center mt-6">
-      <a href="https://wee.bnking.in/c/NjE3Yzk5N" target="_blank" class="btn">Click Here to Join Membership</a>
+      <div class="text-center mt-8">
+        <a href="https://wee.bnking.in/c/NjE3Yzk5N" target="_blank" class="glow-btn">Click Here to Join Membership</a>
+      </div>
     </div>
-  </main>
+  </div>
 
   <!-- Footer -->
   <footer>
-    <p><strong>Credit Line With ZET</strong><br>Bringing Financial Inclusion to Bharat</p>
-    <p class="mt-1 text-xs text-gray-500">ZET Partner</p>
+    <p class="text-white font-semibold">Credit Line With ZET</p>
+    <p>Bringing Financial Inclusion to Bharat</p>
   </footer>
-
-  <!-- Floating Call Button -->
-  <a href="tel:9610841436"
-     class="fixed bottom-5 right-5 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:scale-110 transition-all duration-300">
-    📞
-  </a>
 
 </body>
 </html>
