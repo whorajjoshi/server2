@@ -2,275 +2,146 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Credit Builder Membership — Credit Line</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Credit Builder Membership</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root{
-      --primary:#0d6efd;
-      --accent:#6610f2;
-      --bg:#f5f8ff;
-      --radius:14px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:'Inter',sans-serif;
-      background:var(--bg);
-      color:#111;
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #eaf2ff, #ffffff);
+      color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    /* Header */
-    .topbar{
-      background:linear-gradient(90deg,var(--primary),var(--accent));
-      color:#fff;
-      padding:14px 20px;
-      display:flex;
-      align-items:center;
-      gap:14px;
-      position:sticky;
-      top:0;
-      z-index:50;
-    }
-    .back{
-      background:rgba(255,255,255,0.15);
-      padding:8px 10px;
-      border-radius:8px;
-      text-decoration:none;
-      color:#fff;
-      font-weight:600;
-    }
-    .logo{
-      font-weight:700;
-      text-decoration:none;
-      color:#fff;
-      font-size:1.05rem;
+    .btn {
+      background: linear-gradient(90deg, #007bff, #00b4d8);
+      color: white;
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 9999px;
+      display: inline-block;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
     }
 
-    .container{
-      max-width:900px;
-      margin:28px auto;
-      padding:0 18px 90px;
+    .btn:hover {
+      transform: scale(1.05);
     }
 
-    .heading{
-      text-align:center;
-      margin-bottom:20px;
-    }
-    .heading h1{
-      font-size:1.8rem;
-      font-weight:800;
-      color:var(--primary);
-    }
-    .heading p{
-      color:#555;
-      margin-top:6px;
-      font-size:0.95rem;
+    /* Star glow effect */
+    .btn::before {
+      content: "✨";
+      position: absolute;
+      top: 8px;
+      left: 15px;
+      animation: sparkle 2s infinite ease-in-out;
     }
 
-    /* Section */
-    .section{
-      background:#fff;
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow:0 4px 16px rgba(0,0,0,0.06);
-      margin-bottom:20px;
-    }
-    .section h2{
-      font-size:1.1rem;
-      font-weight:700;
-      margin-bottom:10px;
-      color:var(--accent);
-    }
-    .section ul{
-      list-style:none;
-      line-height:1.7;
-      color:#333;
-      font-size:0.95rem;
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0.8) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.2) rotate(15deg); }
     }
 
-    /* Animated Join Button + Star Shine */
-    .join-btn{
-      position:relative;
-      display:inline-block;
-      background:linear-gradient(90deg,#6610f2,#0d6efd,#6610f2);
-      background-size:300% 100%;
-      color:#fff;
-      padding:14px 36px;
-      border-radius:50px;
-      font-weight:700;
-      text-decoration:none;
-      font-size:1rem;
-      box-shadow:0 6px 18px rgba(0,0,0,0.12);
-      animation:gradientMove 4s ease infinite, glowPulse 2s ease-in-out infinite;
-      overflow:hidden;
-    }
-    .join-btn:hover{
-      transform:translateY(-3px);
-      box-shadow:0 10px 26px rgba(0,0,0,0.18);
-    }
-    .join-btn span.star{
-      position:absolute;
-      top:-10px;
-      left:-10px;
-      width:200%;
-      height:200%;
-      background:radial-gradient(circle,rgba(255,255,255,0.8) 0%,transparent 60%);
-      opacity:0;
-      animation:starShine 4s ease-in-out infinite;
-    }
-
-    @keyframes gradientMove {
-      0%{background-position:0% 50%;}
-      50%{background-position:100% 50%;}
-      100%{background-position:0% 50%;}
-    }
-    @keyframes glowPulse {
-      0%,100%{box-shadow:0 0 15px rgba(102,16,242,0.4);}
-      50%{box-shadow:0 0 25px rgba(13,110,253,0.6);}
-    }
-    @keyframes starShine {
-      0%,80%,100%{opacity:0; transform:translate(-30%,-30%) scale(0.5);}
-      40%{opacity:1; transform:translate(30%,30%) scale(1);}
-    }
-
-    /* Footer */
-    footer{
-      background:#343a40;
-      color:#fff;
-      text-align:center;
-      padding:26px 18px;
-      border-radius:14px 14px 0 0;
-      margin-top:40px;
-    }
-    footer .footer-cta p{
-      font-size:0.95rem;
-      line-height:1.5;
-      margin-bottom:12px;
-    }
-    footer .whatsapp-btn{
-      display:inline-block;
-      background:#25D366;
-      color:#fff;
-      font-weight:700;
-      padding:10px 18px;
-      border-radius:8px;
-      text-decoration:none;
-      transition:transform 0.2s ease;
-    }
-    footer .whatsapp-btn:hover{transform:translateY(-3px);}
-
-    /* Floating Call Button */
-    .call-btn{
-      position:fixed;
-      bottom:18px;
-      right:18px;
-      background:#fff;
-      color:var(--primary);
-      border-radius:50%;
-      width:58px;
-      height:58px;
-      box-shadow:0 4px 14px rgba(0,0,0,0.15);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      transition:transform .25s ease;
-      z-index:99;
-    }
-    .call-btn:hover{transform:scale(1.07);}
-    .call-btn svg{
-      width:28px;
-      height:28px;
-      fill:var(--primary);
-    }
-
-    @media(max-width:540px){
-      .section{padding:18px;}
-      .join-btn{padding:12px 28px;font-size:0.95rem;}
-      .call-btn{width:52px;height:52px;}
+    footer {
+      font-size: 14px;
+      color: #64748b;
+      text-align: center;
+      margin-top: auto;
+      padding: 15px 10px;
+      border-top: 1px solid #e2e8f0;
+      background: #f8fafc;
     }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <a href="index.html" class="back">← Back</a>
-    <a href="index.html" class="logo">Credit Line</a>
-  </header>
+  <!-- Back Button -->
+  <div class="p-4">
+    <a href="index.html" class="text-blue-600 font-semibold flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back
+    </a>
+  </div>
 
-  <main class="container">
-    <div class="heading">
-      <h1>Credit Builder Membership</h1>
-      <p>Quickly Boost Your Credit Score and Unlock Rewards</p>
-    </div>
+  <main class="flex-1 px-6 pb-8">
+    <section class="text-center">
+      <h1 class="text-2xl sm:text-3xl font-bold text-blue-700 mb-3 whitespace-nowrap">
+        Credit Builder Membership
+      </h1>
+      <p class="text-gray-600 mb-6">Quickly Boost Your Credit Score with Credit Builder Membership</p>
 
-    <!-- Top Button -->
-    <div style="text-align:center; margin-bottom:25px;">
-      <a href="https://wee.bnking.in/c/NjE3Yzk5N" class="join-btn">
-        Join Membership
-        <span class="star"></span>
-      </a>
-    </div>
+      <!-- Top Join Button -->
+      <a href="https://wee.bnking.in/c/NjE3Yzk5N" target="_blank" class="btn mb-6">Click Here to Join Membership</a>
+    </section>
 
-    <div class="section">
-      <h2>Eligibility Criteria</h2>
-      <ul>
-        <li>Age Group: 18 - 65 years</li>
-        <li>Income Range: Must have a stable source of income</li>
-        <li>Documents Required: Identity proof & PAN Card</li>
+    <section class="bg-white rounded-2xl shadow-md p-6">
+      <h2 class="text-xl font-semibold text-blue-700 mb-4">Why choose Credit Builder Membership?</h2>
+      <ul class="space-y-2 text-gray-700">
+        <li>💰 Get Credit Builder Loan of ₹500 for eligible members</li>
+        <li>💵 Repay loan in small EMIs of ₹175 over 3 months</li>
+        <li>🛍️ Get an Amazon voucher of ₹175 every time you pay your EMI</li>
+        <li>📈 Watch your Credit Score improve in just 30 days</li>
+        <li>🆓 Get exclusive access to your detailed Credit report, expert consultation & more</li>
+        <li>✅ No income proof required to apply</li>
       </ul>
-    </div>
 
-    <div class="section">
-      <h2>Highlights</h2>
-      <ul>
+      <h2 class="text-xl font-semibold text-blue-700 mt-6 mb-3">Why you should apply from here:</h2>
+      <ul class="space-y-2 text-gray-700">
+        <li>✔️ 100% online process</li>
+        <li>✔️ Minimal documentation</li>
+      </ul>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow-md p-6 mt-6">
+      <h2 class="text-xl font-semibold text-blue-700 mb-4">Eligibility Criteria</h2>
+      <ul class="space-y-2 text-gray-700">
+        <li>👤 Age Group: 18 - 65 years</li>
+        <li>💼 Income Range: Customer must have a stable source of income</li>
+        <li>🪪 Documents Required: Identity proof & PAN Card</li>
+      </ul>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow-md p-6 mt-6">
+      <h2 class="text-xl font-semibold text-blue-700 mb-4">Brand Benefits</h2>
+      <ul class="space-y-2 text-gray-700">
         <li>⚡ Build 750+ Credit Score with no deposit required</li>
-        <li>Start improving your score in just 30 days</li>
-        <li>Get ₹500 Credit Builder Loan for eligible members</li>
-        <li>Pay ₹175 EMI for 3 months only</li>
-        <li>Get ₹175 Amazon voucher on every on-time EMI</li>
-        <li>Free access to credit report & expert consultation</li>
-        <li>No income proof required</li>
+        <li>📊 See improvement in just 30 days</li>
+        <li>💳 Get ₹500 Credit Builder Loan</li>
+        <li>💵 Pay small EMI of ₹175 for 3 months</li>
+        <li>🎁 Get ₹175 Amazon voucher for every EMI</li>
+        <li>🎓 Access expert consultation & videos</li>
+        <li>🆓 No income proof required</li>
+        <li>💸 One-time joining fee: ₹500</li>
+        <li>💰 Monthly membership fee: ₹99</li>
       </ul>
-    </div>
+      <p class="text-sm text-gray-600 mt-3">
+        Spend only ₹99/month — You get ₹500 loan & ₹175 Amazon voucher back every EMI!
+      </p>
+    </section>
 
-    <div class="section">
-      <h2>Membership Details</h2>
-      <ul>
-        <li>One-time joining fee of ₹500</li>
-        <li>Monthly membership fee of ₹99</li>
-        <li>Spend net ₹99/month (₹500 loan + ₹175 voucher)</li>
-      </ul>
-    </div>
-
-    <!-- Bottom Button -->
-    <div style="display:flex;justify-content:center;margin:40px 0 30px;">
-      <a href="https://wee.bnking.in/c/NjE3Yzk5N" class="join-btn">
-        Join Membership
-        <span class="star"></span>
-      </a>
-    </div>
-
-    <div class="section" style="text-align:center;font-size:0.9rem;color:#555;">
-      <p><strong>Credit LIne With ZET </strong><br>Bringing Financial Inclusion to Bharat</p>
+    <!-- Bottom Join Button -->
+    <div class="text-center mt-6">
+      <a href="https://wee.bnking.in/c/NjE3Yzk5N" target="_blank" class="btn">Click Here to Join Membership</a>
     </div>
   </main>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-cta">
-      <p><strong>Need help with Credit Builder Membership?</strong><br>
-      Chat with our expert for instant assistance.</p>
-      <a class="whatsapp-btn" href="https://wa.me/919610841436" target="_blank" rel="noopener">Chat on WhatsApp</a>
-    </div>
-    <p style="margin-top:12px; font-size:0.8em;">© 2025 Credit Line</p>
+    <p><strong>Credit Line With ZET</strong><br>Bringing Financial Inclusion to Bharat</p>
+    <p class="mt-1 text-xs text-gray-500">ZET Partner</p>
   </footer>
 
   <!-- Floating Call Button -->
-  <a href="tel:+919610841436" class="call-btn" title="Call Support">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79a15.093 15.093 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.4a1 1 0 01-1 1C10.07 22.04 2 13.97 2 4a1 1 0 011-1h3.4a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.21 1.11l-2.33 2.8z"/></svg>
+  <a href="tel:9610841436"
+     class="fixed bottom-5 right-5 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:scale-110 transition-all duration-300">
+    📞
   </a>
 
 </body>
