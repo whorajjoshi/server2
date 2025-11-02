@@ -5,170 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Credit Cards — Credit Line</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
 :root{
   --primary:#6610f2;
   --accent:#0d6efd;
   --page-bg:#f5f7fb;
-  --card-bg:#fff;
-  --radius:12px;
   --muted:#666;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif; background:var(--page-bg); color:#222; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
-
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--page-bg);
+  color:#222;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
 .topbar{
-  position: sticky;
-  top: 0;
-  background: linear-gradient(90deg,var(--accent),var(--primary));
-  padding: 12px 16px;
-  display:flex;
-  align-items:center;
-  gap:12px;
+  position:sticky;top:0;
+  background:linear-gradient(90deg,var(--accent),var(--primary));
+  padding:12px 16px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
   z-index:100;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  justify-content:flex-start;
 }
 .back-btn{
-  background: rgba(255,255,255,0.2);
-  padding:6px 10px;
-  border-radius:8px;
-  text-decoration:none;
-  color:#fff;
-  font-weight:600;
-  font-size:0.9rem;
-  transition: background .2s ease;
-  flex-shrink:0;
+  background:rgba(255,255,255,0.2);
+  padding:6px 10px;border-radius:8px;
+  text-decoration:none;color:#fff;
+  font-weight:600;font-size:0.9rem;
+  transition:background .2s ease;
 }
-.back-btn:hover{background: rgba(255,255,255,0.35);}
+.back-btn:hover{background:rgba(255,255,255,0.35);}
 .top-title{
-  font-size: clamp(1.2rem,5vw,1.8rem);
-  font-weight:800;
-  color: #fff;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-  text-align:left;
-  flex:1;
+  font-size:clamp(1.2rem,5vw,1.8rem);
+  font-weight:800;color:#fff;
+  text-shadow:1px 1px 2px rgba(0,0,0,0.3);
 }
-
 .container{max-width:1100px;margin:24px auto;padding:0 16px 60px;}
-.filters{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  justify-content:space-between;
-  margin-bottom:16px;
+.filters{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;margin-bottom:16px;}
+.filters input,.filters select{
+  padding:8px 10px;border-radius:8px;
+  border:1px solid #ccc;font-size:0.9rem;
+  flex:1;min-width:140px;
 }
-.filters input, .filters select{
-  padding:8px 10px;
-  border-radius:8px;
-  border:1px solid #ccc;
-  font-size:0.9rem;
-  flex:1;
-  min-width:140px;
-}
-.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;}
-.card{background:var(--card-bg); border-radius:var(--radius); padding:14px; box-shadow:0 6px 20px rgba(20,20,40,0.06); display:flex; flex-direction:column; transition:transform .18s ease,box-shadow .18s ease;}
-.card:hover{transform:translateY(-6px); box-shadow:0 12px 30px rgba(20,20,40,0.09);}
-.card-body{flex:1; display:flex; flex-direction:column; gap:8px;}
-.card-title{display:flex; justify-content:space-between; align-items:center;}
-.card-title h3{font-size:1rem; font-weight:700; color:#111;}
-.card-meta{font-size:0.85rem; color:var(--muted);}
-.fee{font-weight:700; color:#111;}
-.rating{color:#ffb400; font-size:0.9rem;}
-.tag-row{display:flex; gap:6px; flex-wrap:wrap;}
-.tag{background:#eef2ff; color:var(--primary); padding:4px 8px; border-radius:8px; font-size:0.75rem; font-weight:600;}
-
-/* Buttons Row - Equal Size and Theme */
-.action-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin-top: 12px;
-}
-.know-btn, .apply-btn {
-  flex: 1;
-  background: linear-gradient(90deg, var(--accent), var(--primary));
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 0;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  transition: opacity .2s ease, transform .2s ease;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  min-width: 120px;
-}
-.know-btn:hover, .apply-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-.note{text-align:center; color:var(--muted); margin-top:18px; font-size:0.9rem;}
-
-/* Footer */
-footer{background:#111; color:#fff; padding:20px 16px; text-align:center;}
+.note{text-align:center;color:var(--muted);margin-top:18px;font-size:0.9rem;}
+footer{background:#111;color:#fff;padding:20px 16px;text-align:center;}
 footer .footer-container{max-width:1100px;margin:auto;}
-footer a.chat-btn{display:inline-block; background:linear-gradient(90deg,#0d6efd,#6610f2); padding:10px 14px; border-radius:10px; font-weight:700; margin-top:6px; transition:opacity .2s ease; text-decoration:none; color:#fff;}
+footer a.chat-btn{display:inline-block;background:linear-gradient(90deg,#0d6efd,#6610f2);padding:10px 14px;border-radius:10px;font-weight:700;margin-top:6px;text-decoration:none;color:#fff;}
 footer a.chat-btn:hover{opacity:0.9;}
-footer .copyright{margin-top:12px; font-size:0.85rem; color:#888;}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 200;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5);
-}
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 400px;
-  position: relative;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-}
-.modal-content h2 {
-  margin-bottom: 10px;
-  color: var(--primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 1.1rem;
-}
-.modal-content p {
-  color: #444;
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-.close {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  color: #333;
-  font-size: 1.4rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close:hover {color: var(--primary);}
-
-@media(max-width:520px){
-  .card{padding:12px;}
-  .action-row{flex-direction:row;}
-  .filters{flex-direction:column; align-items:stretch;}
-}
+footer .copyright{margin-top:12px;font-size:0.85rem;color:#888;}
 </style>
 </head>
 <body>
@@ -189,713 +74,99 @@ footer .copyright{margin-top:12px; font-size:0.85rem; color:#888;}
     </select>
   </div>
 
-  <section class="grid" id="cardGrid">
-      <!-- KIWI UPI RuPay Card -->
-<div class="card" data-name="KIWI UPI RuPay Card" data-fee="0" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>KIWI UPI RuPay Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Lifetime Free & Unlimited Cashback!<br>
-      Earn cashback on all transactions<br>
-      Required Minimum Credit Score 720+
-    </div>
-    <div class="tag-row">
-      <span class="tag">Life Time Free</span>
-      <span class="tag">Cashback</span>
-      <span class="tag">UPI</span>
-      <span class="tag">Lounge Access</span>
-    </div>
-    <div class="fee">Joining Fee ₹0 | Annual Fee ₹0</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="KIWI UPI RuPay Card"
-        data-benefits="Benifits :<br>✔️ Lifetime Free & Unlimited Cashback!<br>✔️ 0.5% on all Online Transactions<br>✔️ 2% on all Scan & Pay Transactions<br>✔️ Airport Lounge Access<br>✔️ 5% cashback on achieving yearly spends of ₹1.5L"
-        data-eligibility="Eligibilty :<br>✔️ Age: 25–60 years<br>✔️ Employment: Salaried Individuals<br>✔️ Minimum Salary: ₹25,000/month<br>✔️ CIBIL Score: 720+<br>✔️ Job Stability: Minimum 9 months in current job<br>✔️ Documents: Aadhaar Card, PAN Card, Bank Statement"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=bm00ZFlqNm9aTGh6NkpxV2ZoMGFMZz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- YES Bank Pop Club Credit Card -->
-<div class="card" data-name="YES Bank Pop Club Credit Card" data-fee="0" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>YES Bank Pop Club Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Zero Joining Fee | POPcoins Rewards | Fuel Surcharge Waiver<br>
-      Required Minimum Credit Score 730+
-    </div>
-    <div class="tag-row">
-      <span class="tag">POPcoins Rewards</span>
-      <span class="tag">Zero Joining Fee</span>
-      <span class="tag">Fuel Surcharge Waiver</span>
-    </div>
-    <div class="fee">Joining Fee ₹0 | Annual Fee ₹0</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="YES Bank Pop Club Credit Card"
-        data-benefits="Benifits :<br> ✨ Zero Joining Fees<br>🎉 ₹5000 Worth of Joining Benefits<br>💸 Earn 10 POPcoins on every online payment<br>🎁 Get EXTRA 500 POPcoins on card activation<br>⛽ 1% Fuel Surcharge Waiver"
-        data-eligibility="Eligibility :<br>✔️ Age: 21+ years<br>✔️ Employment: Salaried or Self-Employed<br>✔️ Income: ₹25,000/month (Salaried), ₹5 Lakh+ tax return (Self-Employed)<br>✔️ Credit Score: 730+<br>✔️ Documents Required: PAN Card, Aadhaar Card, Address Proof, Income Proof, Detailed current address & office address"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=blpxb3p5cklsMkkwdFl5dG5KR1pvQT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- BAJAJ Finserv Insta Card -->
-<div class="card" data-name="BAJAJ Finserv Insta Card" data-fee="0" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>BAJAJ Finserv Insta Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Instant Digital Card | Shop on EMIs | ₹1000 OFF on first in-store transaction
-    </div>
-    <div class="tag-row">
-      <span class="tag">Instant Digital Card</span>
-      <span class="tag">EMI Shopping</span>
-      <span class="tag">₹1000 Off</span>
-    </div>
-    <div class="fee">One Time Joining Fee ₹530 | Annual Fee ₹0</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="BAJAJ Finserv Insta Card"
-        data-benefits="Benifits :<br>✔️ Shop from 1 Million+ Products on easy EMIs<br>✔️ Accepted at 1 Lakh+ Stores across India<br>✔️ ₹1000 OFF on your first in-store transaction<br>✔️ Instant Digital Card – Access it on your phone<br>✔️ Loan offer up to ₹3 Lakhs"
-        data-eligibility="Eligibility :<br>✔️ Age: 21 to 65 years<br>✔️ Employment: Salaried or Self-Employed<br>✔️ Income: ₹15,000+ per month<br>✔️ Documents Required: Aadhaar Card, PAN Card, Valid Mobile Number<br>✔️ Must have valid PAN & Aadhaar linked with mobile<br>✔️ Good credit history preferred"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=MHJPazdVUnM2UXdqVzdXTzhvbmlnQT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
+  <section id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-    <!-- IDFC Bank Lifetime Free Card -->
-<div class="card" data-name="IDFC Bank Lifetime Free Card" data-fee="0" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>IDFC Bank Lifetime Free Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Welcome Gift Voucher Worth ₹500<br>
-      Up to 75% Off on Movie Tickets & More<br>
-      Required Minimum Cibil Score 710+
-    </div>
-    <div class="tag-row">
-      <span class="tag">Movies</span>
-      <span class="tag">Restaurants</span>
-      <span class="tag">Cashback</span>
-      <span class="tag">Lounge Access</span>
-    </div>
-    <div class="fee">Annual Fee: ₹0 | Lifetime Free</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="IDFC Bank Lifetime Free Card"
-        data-benefits="Benefits :<br>✔️ Welcome Gift Voucher Worth ₹500<br>✔️ Up to 75% Off on Movie Tickets<br>✔️ Flat 25% Off on Restaurant Bills<br>✔️ Cashback on EMI Transactions<br>✔️ Complimentary Airport Lounge Access"
-        data-eligibility="Eligibility :<br>✔️ Employment: Salaried or self-employed<br>✔️ Age Group: 21+ years<br>✔️ Income: Rs.30,000/month for salaried & Rs.5 Lakh+ tax return for self-employed applicants<br>✔️ Credit Score: 710+<br>✔️ Available for residents of 50 cities (check PIN code)<br>✔️ Existing customers of IDFC First Bank are not eligible<br>✔️ Documents: Aadhaar Card, PAN Card, Address Proof, Income Proof (Salary Slip)"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=Q0RTbFY0dVh3YytoVVlndENLVXpDQT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- Indus Easy Credit Card -->
-<div class="card" data-name="Indus Easy Credit Card" data-fee="0" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>Indus Easy Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Earn reward points & cashback<br>
-      Lifetime free card with exclusive benefits<br>
-      Required Credit Score 680+
-    </div>
-    <div class="tag-row">
-      <span class="tag">Life Time Free</span>
-      <span class="tag">Cashback</span>
-      <span class="tag">Reward Points</span>
-      <span class="tag">Lounge Access</span>
-    </div>
-    <div class="fee">Joining Fee ₹0 | Annual Fee ₹0</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="Indus Easy Credit Card"
-        data-benefits="Benifits :<br>💰 Earn attractive reward points & cashback<br>🔁 Reward points never expire – Redeem anytime<br>🆓 Lifetime Free Credit Card<br>🛫 Complimentary Airport Lounge Access<br>⛽ Fuel Surcharge Waiver at all petrol pumps"
-        data-eligibility="Eligibility :<br>✔️ Age: 21–60 years<br>✔️ Employment: Salaried (Service sector) or Self-Employed (Small business owners)<br>✔️ Annual Income: ₹3 Lakhs or more<br>✔️ Credit Score: 680+<br>✔️ Documents: Aadhaar Card, PAN Card, Address Proof (Utility agreement, etc.), Income Proof (Salaried: Latest payslip or last 3 months' payslips; Self-Employed: Latest ITR with tax computation)"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=SWwxMW5xeU9pL0EyTXpWc3d2T09UUT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- Scapia Credit Card -->
-<div class="card" data-name="Scapia Credit Card" data-fee="0" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>Scapia Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Zero Joining Fee | Unlimited Lounge Access | Digital Application<br>
-      Required Minimum Cibil score 730+
-    </div>
-    <div class="tag-row">
-      <span class="tag">Lounge Access</span>
-      <span class="tag">Zero Forex Markup</span>
-      <span class="tag">Digital Application</span>
-    </div>
-    <div class="fee">Joining Fee ₹0 | Annual Fee ₹0</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="Scapia Credit Card"
-        data-benefits="Benifits :<br>✅ Zero Joining Fee – No hidden costs!<br>🏆 Unlimited Lounge Access<br>🌍 Zero Forex Markup – Travel without extra charges!<br>🎁 10% Coins Back (5 Coins = ₹1)<br>📲 100% Digital Application"
-        data-eligibility="Eligibility :<br>✔️ Age: 21–65 years (Salaried), 25–65 years (Self-Employed)<br>✔️ Income: ₹18,000/month (Salaried), 8+ Lakhs/year (Self-Employed)<br>✔️ Customer Type: New to Bank only (Not existing Federal Bank customer)<br>✔️ Must have regular & stable income<br>✔️ Minimum CIBIL Score: 730+<br>✔️ Credit Enquiries: ≤5 in last 180 days<br>✔️ No Current DPD<br>✔️ Documents: Aadhaar Card, PAN details and physical PAN card for VKYC"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=dTlXOWlzVGQ1QTJPSlVROFdnMGhzdz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-
-<!-- BOB Lifetime Free Credit Card -->
-<div class="card" data-name="BOB Lifetime Free Credit Card" data-fee="Lifetime Free" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>BOB Lifetime Free Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Rewards & Fuel Benefits<br> Minimum Credit Score 700+ required
-    </div>
-    <div class="tag-row">
-       <span class="tag">Life Time Free</span>
-      <span class="tag">Rewards</span>
-      <span class="tag">Fuel</span>
-    </div>
-    <div class="fee">Annual Fee: Lifetime Free</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="BOB Lifetime Free Credit Card"
-        data-benefits="Benifits :<br>✔️ 5X rewards on daily expenses<br>✔️ Lifetime free usage<br>✔️ Fuel Surcharge Waiver<br>✔️ Multiple redemption options"
-        data-eligibility="Eligibilty :<br>✔️ Age Group: 25 to 50 Years<br>✔️ Locality: Metros & Tier Cities<br>✔️ Credit Score: 700+<br>✔️ Employment: Salaried or Self-Employed<br>✔️ Minimum Income: 4 Lakh/year<br>✔️ Documents Required: PAN Card, Aadhaar Card, Income Proof, Photograph, Address Proof"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=NGVmbWtYMkh4MjhGcUh2VVk2L1Fzdz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-
-<!-- Axis Bank Credit Card -->
-    <div class="card" data-name="Axis Bank Credit Card" data-fee="499" data-rating="5">
-      <div class="card-body">
-        <div class="card-title">
-          <h3>Axis Bank Credit Card</h3>
-          <span class="rating">★★★★★</span>
+    <!-- Example Card 1 -->
+    <div class="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden border border-gray-200"
+      data-name="KIWI UPI RuPay Card" data-fee="0" data-rating="5">
+      <div class="bg-green-500 text-white text-center py-2 font-semibold">
+        High Approval Chances
+      </div>
+      <div class="p-5">
+        <div class="flex justify-between items-center mb-4">
+          <div class="flex-1">
+            <h3 class="text-gray-800 font-semibold text-lg">KIWI UPI RuPay Card</h3>
+            <p class="text-gray-700 font-bold text-md leading-tight">Lifetime Free & Unlimited Cashback!</p>
+          </div>
+          <div class="ml-3">
+            <img src="https://cdn.banksathi.com/cards/kiwi-rupay.png" alt="Card" class="w-60 h-20 object-cover rounded-xl shadow-md">
+          </div>
         </div>
-        <div class="card-meta">
-          Earn Cashback & Exclusive Offers<br>
-          Eligibility: Salaried/Self-employed, Cibil Score: 740+
+        <div class="flex justify-between mt-2 text-center">
+          <div class="w-1/2 border rounded-lg py-2 mx-1 bg-white/70">
+            <p class="text-gray-600 text-sm">Joining Fee</p>
+            <p class="font-semibold">₹0</p>
+          </div>
+          <div class="w-1/2 border rounded-lg py-2 mx-1 bg-white/70">
+            <p class="text-gray-600 text-sm">Annual Fee</p>
+            <p class="font-semibold">₹0</p>
+          </div>
         </div>
-        <div class="tag-row">
-          <span class="tag">Cashback</span>
-          <span class="tag">Food Offers</span>
-          <span class="tag">Lounge Access</span>
-        </div>
-        <div class="fee">Joining Fee ₹499 | Annual Fee ₹499</div>
-        <div class="action-row">
-          <button class="know-btn"
-            data-title="Axis Bank Credit Card"
-            data-benefits="Benifits :<br>✔️ Earn Cashback on Every Purchase<br>🍕 Up to 50% OFF on Online Food Orders<br>🎉 Welcome Benefits Worth ₹600<br>✔️ Save Big on Shows, Groceries & Bills<br>✈️ FREE Airport Lounge Access"
-            data-eligibility="Eligibilty :<br>✔️ Employment: Salaried or Self-employed<br>✔️ Age: 21-60 years<br>✔️ CIBIL Score: 740+<br>✔️ Income: Salaried with good CIBIL - Annual Income above X lakhs<br>✔️ Salaried with zero CIBIL - Annual Income above X lakhs<br>✔️ Self-employed with good CIBIL - Annual Income above 3.6 lakhs<br>✔️ Self-employed with zero CIBIL - Not eligible<br>✔️ Documents: Aadhaar Card, PAN Card, Income Proof"
-          >Know More</button>
-          <a href="https://leads.banksathi.com/?h=RHdCT2JyeXU3eWpXczBETnZkeVhGUT09" class="apply-btn" target="_blank">Apply Now</a>
+        <ul class="mt-4 space-y-2 text-sm text-gray-700">
+          <li>💸 0.5% cashback on online spends</li>
+          <li>📱 2% cashback on UPI Scan & Pay</li>
+          <li>🛫 Lounge access available</li>
+        </ul>
+        <div class="flex justify-between gap-3 mt-5">
+          <button class="w-1/2 border border-blue-600 text-blue-600 hover:bg-blue-50 py-2 rounded-lg font-semibold know-btn"
+            data-title="KIWI UPI RuPay Card"
+            data-benefits="Benifits :<br>✔️ Lifetime Free & Unlimited Cashback!<br>✔️ 0.5% on all Online Transactions<br>✔️ 2% on all Scan & Pay Transactions<br>✔️ Airport Lounge Access<br>✔️ 5% cashback on achieving yearly spends of ₹1.5L"
+            data-eligibility="Eligibilty :<br>✔️ Age: 25–60 years<br>✔️ Employment: Salaried Individuals<br>✔️ Minimum Salary: ₹25,000/month<br>✔️ CIBIL Score: 720+<br>✔️ Documents: Aadhaar Card, PAN Card, Bank Statement">
+            Know More
+          </button>
+          <a href="https://leads.banksathi.com/?h=bm00ZFlqNm9aTGh6NkpxV2ZoMGFMZz09" target="_blank"
+             class="w-1/2 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold text-center">
+            Apply Now
+          </a>
         </div>
       </div>
     </div>
-    <!-- RBL ShopRite Credit Card -->
-<div class="card" data-name="RBL ShopRite Credit Card" data-fee="0" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>RBL ShopRite Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Enjoy lifetime free credit card, Req. Cibil 700+<br>
-      Welcome Benefit: 2,000 Reward Points<br>
-      Minimum Credit Score required 700+
-    </div>
-    <div class="tag-row">
-      <span class="tag">Groceries</span>
-      <span class="tag">Fuel Waiver</span>
-      <span class="tag">BookMyShow</span>
-    </div>
-    <div class="fee">Annual Fee: ₹0 | Lifetime Free</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="RBL ShopRite Credit Card"
-        data-benefits="Benifits :<br>✔️ Enjoy lifetime free credit card!<br>✔️ Welcome Benefit of 2,000 Reward points<br>✔️ Fuel surcharge waiver up to ₹100/month<br>✔️ 20X reward points on all grocery transactions<br>✔️ 10% off (up to ₹100) on BookMyShow tickets"
-        data-eligibility="Eligibility :<br>✔️ Only for New Customers (Existing-to-Bank customers are not eligible for payout)<br>✔️ Age Group: 21 to 65 years<br>✔️ Employment Type: Salaried or Self-Employed<br>✔️ Minimum Credit Score Required: 700 or above<br>✔️ Documents: PAN Card, Aadhaar Card"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=TytZbWR0THJLa1ZqUXdPekcrVmhjQT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- HDFC UPI RuPay Credit Card -->
-<div class="card" data-name="HDFC UPI RuPay Credit Card" data-fee="Lifetime Free" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>HDFC UPI RuPay Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Rewards & UPI Benefits
-    </div>
-    <div class="tag-row">
-      <span class="tag">CashPoints</span>
-      <span class="tag">Fuel Free</span>
-      <span class="tag">UPI</span>
-    </div>
-    <div class="fee">joining Fee : 250+TAX , Annual Fee: 250+TAX</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="HDFC UPI RuPay Credit Card"
-        data-benefits="Benifits :<br>⚡3% CashPoints on Grocery & more<br>⚡2% CashPoints on Utility<br>⚡1% CashPoints on rest categories<br>⚡Zero fuel surcharge<br>⚡Up to 50 days of Interest-free credit period"
-        data-eligibility="Eligibilty :<br>✔️ Age: 21-60 years (Salaried), 21-65 years (Self-Employed)<br>✔️ Customer Type: New to Bank (NTB) only<br>✔️ Minimum Income: ₹20,000/month (Salaried) / Varies for Self-Employed<br>✔️ Minimum CIBIL Score: 750<br>✔️ Documents Required: Identity Proof, PAN Card, Aadhaar Card, Address Proof (any 1: Electricity Bill, Telephone Bill, Aadhaar, Passport, Rental Agreement), Income Proof (Bank Statement last 6 months, Salary slips last 3 months, Employment Letter)"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=bEUrZDV6WUYrR0RzS09UeVZQYnQ3QT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-    <!-- HDFC Credit Card -->
-    <div class="card" data-name="HDFC Credit Card" data-fee="500" data-rating="5">
-      <div class="card-body">
-        <div class="card-title">
-          <h3>HDFC Credit Card</h3>
-          <span class="rating">★★★★★</span>
+
+    <!-- Example Card 2 -->
+    <div class="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden border border-gray-200"
+      data-name="YES Bank Pop Club Credit Card" data-fee="0" data-rating="5">
+      <div class="bg-green-500 text-white text-center py-2 font-semibold">
+        High Approval Chances
+      </div>
+      <div class="p-5">
+        <div class="flex justify-between items-center mb-4">
+          <div class="flex-1">
+            <h3 class="text-gray-800 font-semibold text-lg">YES Bank Pop Club Credit Card</h3>
+            <p class="text-gray-700 font-bold text-md leading-tight">Zero Joining Fee | POPcoins Rewards</p>
+          </div>
+          <div class="ml-3">
+            <img src="https://cdn.banksathi.com/cards/yes-popclub.png" alt="Card" class="w-60 h-20 object-cover rounded-xl shadow-md">
+          </div>
         </div>
-        <div class="card-meta">
-          Free Amazon Prime & More<br>
-          Eligibility: Salaried/Self-employed, Age 21-60/65
+        <div class="flex justify-between mt-2 text-center">
+          <div class="w-1/2 border rounded-lg py-2 mx-1 bg-white/70">
+            <p class="text-gray-600 text-sm">Joining Fee</p>
+            <p class="font-semibold">₹0</p>
+          </div>
+          <div class="w-1/2 border rounded-lg py-2 mx-1 bg-white/70">
+            <p class="text-gray-600 text-sm">Annual Fee</p>
+            <p class="font-semibold">₹0</p>
+          </div>
         </div>
-        <div class="tag-row">
-          <span class="tag">Cashback</span>
-          <span class="tag">Gift Voucher</span>
-          <span class="tag">Lounge Access</span>
-        </div>
-        <div class="fee">Joining Fee ₹499 | Annual Fee ₹499(Differ With variants)</div>
-        <div class="action-row">
-          <button class="know-btn"
-            data-title="HDFC Credit Card"
-            data-benefits="Benifits :<br>✔️ 5% Cashback on Amazon<br>🎁 Get Gift Vouchers Worth ₹700<br>✈️ Lounge Access<br>🎉 Welcome Offer Worth ₹500"
-            data-eligibility="Eligibility :<br>✔️ Employment: Salaried or Self-employed<br>✔️ Age: 21-60 years<br>✔️ Documents: Aadhaar, PAN, Income Proof"
-          >Know More</button>
-          <a href="https://leads.banksathi.com/?h=RHdCT2JyeXU3eWpXczBETnZkeVhGUT09" class="apply-btn" target="_blank">Apply Now</a>
+        <ul class="mt-4 space-y-2 text-sm text-gray-700">
+          <li>🎉 ₹5000 Worth of Joining Benefits</li>
+          <li>💰 Earn POPcoins on every online spend</li>
+          <li>⛽ Fuel surcharge waiver</li>
+        </ul>
+        <div class="flex justify-between gap-3 mt-5">
+          <button class="w-1/2 border border-blue-600 text-blue-600 hover:bg-blue-50 py-2 rounded-lg font-semibold know-btn"
+            data-title="YES Bank Pop Club Credit Card"
+            data-benefits="Benifits :<br>✨ Zero Joining Fees<br>🎉 ₹5000 Worth of Joining Benefits<br>💸 Earn 10 POPcoins on every online payment<br>🎁 Extra 500 POPcoins on activation<br>⛽ 1% Fuel Surcharge Waiver"
+            data-eligibility="Eligibility :<br>✔️ Age: 21+ years<br>✔️ Employment: Salaried or Self-Employed<br>✔️ Income: ₹25,000/month (Salaried), ₹5L+ ITR (Self-Employed)<br>✔️ Credit Score: 730+<br>✔️ Documents: PAN, Aadhaar, Address & Income Proof">
+            Know More
+          </button>
+          <a href="https://leads.banksathi.com/?h=blpxb3p5cklsMkkwdFl5dG5KR1pvQT09" target="_blank"
+             class="w-1/2 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold text-center">
+            Apply Now
+          </a>
         </div>
       </div>
     </div>
-<!-- RBL Indian Oil Credit Card -->
-<div class="card" data-name="RBL Indian Oil Credit Card" data-fee="0" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>RBL Indian Oil Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Earn Fuel Points | Welcome Rewards | Annual Fee Waiver<br>
-      ✔️ Required Minimum Credit Score: 700+
-    </div>
-    <div class="tag-row">
-      <span class="tag">Fuel Points</span>
-      <span class="tag">Welcome Rewards</span>
-      <span class="tag">Annual Fee Waiver</span>
-    </div>
-    <div class="fee">Joining Fee ₹1500 | Annual Fee ₹0</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="RBL Indian Oil Credit Card"
-        data-benefits="Benifits :<br>✔️ Earn 15 Fuel Points per Rs. 100 spent at IOCL outlets<br>✔️ Welcome Benefit of 3,000 Reward Points<br>✔️ Quarterly Milestone of 1,000 Fuel Points on Quarterly Spends of Rs. 75,000<br>✔️ Annual Fee Waiver on Annual Spends of Rs. 2.75 Lakh"
-        data-eligibility="Eligibility :<br>✔️ Age: 21 to 65 years<br>✔️ Employment: Salaried or Self-Employed<br>✔️ Minimum Credit Score: 700+<br>✔️ Documents Required: PAN Card, Aadhaar Card, Income Proof<br>✔️ Only for new customers (Existing-to-Bank not eligible)"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=Z3c1MFRCa3pYUWFONEhXeG8rOW9lZz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- SBI BPCL Credit Card -->
-<div class="card" data-name="SBI BPCL Credit Card" data-fee="0" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>SBI BPCL Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Fuel Rewards | Welcome Points | Dining & Movie Rewards<BR>
-           ✔️ Minimum Credit Score: 700+
-    </div>
-    <div class="tag-row">
-      <span class="tag">Fuel Rewards</span>
-      <span class="tag">Welcome Points</span>
-      <span class="tag">Dining & Movies</span>
-    </div>
-    <div class="fee">Joining Fee ₹499+GST | Annual Fee ₹499+GST</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="SBI BPCL Credit Card"
-        data-benefits="Benifits :<br>✔️ Welcome benefit: 2,000 Reward Points worth ₹500<br>✔️ 4.25% valueback ~ 13x Points on fuel purchases<br>✔️ 5x reward points on movie, groceries and dining spends<br>✔️ 1% fuel surcharge waiver"
-        data-eligibility="Eligibility :<br>✔️ Age: 23+<br>✔️ Employment: Salaried only<br>✔️ Minimum Income: Rs. 25,000/month<br>✔️ Credit Score: 700+<br>✔️ Documents Required: Aadhaar Card, PAN Card, Income Proof"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=bmtOS1VvNVJqZ24xd1lUazhVRXlJZz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- SimplySAVE SBI Card -->
-<div class="card" data-name="Simply SAVE SBI Card" data-fee="0" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>Simply SAVE SBI Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Grocery, Dining, Movies & Fuel Benefits
-    </div>
-    <div class="tag-row">
-      <span class="tag">Grocery</span>
-      <span class="tag">Dining & Movies</span>
-      <span class="tag">Fuel Benefits</span>
-    </div>
-    <div class="fee">Annual Fee: ₹499+GST (Reversed if yearly spend > ₹1 Lakh)</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="SimplySAVE SBI Card"
-        data-benefits="Benifits :<br>✔️ Welcome Benefits: 2000 bonus reward points worth ₹500 on spending ₹2000 in 60 days<br>✔️ 10X Reward Points on grocery, dining & movies (4 points = ₹1)<br>✔️ Fuel Surcharge Reversal up to ₹100/month<br>✔️ Free add-on card for family members"
-        data-eligibility="Eligibility :<br>✔️ Age: 21+<br>✔️ Employment: Salaried<br>✔️ Minimum Income: Rs.25,000/month<br>✔️ Credit Score: 700+<br>✔️ Documents Required: Aadhaar Card, PAN Card, Income Proof"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=UXVnbTRrSkljVkJjVXNEbExMdHRIUT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- SimplyCLICK SBI Card -->
-<div class="card" data-name="SimplyCLICK SBI Card" data-fee="499" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>SimplyCLICK SBI Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Online Shopping, Dining & Fuel Benefits
-    </div>
-    <div class="tag-row">
-      <span class="tag">Online Shopping</span>
-      <span class="tag">Dining</span>
-      <span class="tag">Fuel Benefits</span>
-    </div>
-    <div class="fee">Annual Fee: ₹499 + Taxes (Reversed if yearly spend > ₹1 Lakh)</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="SimplyCLICK SBI Card"
-        data-benefits="Benifits :<br>✔️ Welcome Benefits: Amazon.in gift card worth Rs.500 on payment of Annual Fee<br>✔️ 10X Reward Points on Apollo24X7, BookMyShow, Cleartrip, Eazydiner & Netmeds<br>✔️ 1% fuel surcharge waiver for transactions between Rs.500 & Rs.3000<br>✔️ Free add-on card for family members"
-        data-eligibility="Eligibility :<br>✔️ Age: 23+<br>✔️ Employment: Salaried<br>✔️ Minimum Income: Rs.25,000/month<br>✔️ Credit Score: 700+<br>✔️ Documents Required: Aadhaar Card, PAN Card, Income Proof"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=TWN4Tm11UlU0OTd4ZUFRQVVRVVQrdz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- IRCTC SBI Credit Card -->
-<div class="card" data-name="IRCTC SBI Credit Card" data-fee="Varies" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>IRCTC SBI Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Travel & Fuel Benefits
-    </div>
-    <div class="tag-row">
-      <span class="tag">Travel</span>
-      <span class="tag">Fuel</span>
-      <span class="tag">Platinum Benefits</span>
-    </div>
-    <div class="fee">Annual Fee: Varies (Check on application)</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="IRCTC SBI Credit Card"
-        data-benefits="Benifits :<br>✔️ 1% Off on IRCTC Ticket Bookings<br>✔️ 4 Free Railway Lounge Access/Year in India<br>✔️ 1% fuel surcharge waiver across all petrol pumps<br>✔️ Platinum privileges with IRCTC Platinum Credit Card"
-        data-eligibility="Eligibility :<br>✔️ Age: 23+<br>✔️ Employment: Salaried<br>✔️ Minimum Income: Rs.20,000/month<br>✔️ Credit Score: 700+<br>✔️ Documents Required: Aadhaar Card, PAN Card, Income Proof"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=OEMxTVc4S0NsMTZrbjdjVFlsaFFKdz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- Flipkart Axis Bank Credit Card -->
-<div class="card" data-name="Flipkart Axis Bank Credit Card" data-fee="Lifetime Free" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>Flipkart Axis Bank Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Unlimited Cashback & Flipkart Benefits
-    </div>
-    <div class="tag-row">
-      <span class="tag">Cashback</span>
-      <span class="tag">Fuel Free</span>
-      <span class="tag">Flipkart Offers</span>
-    </div>
-    <div class="fee">Joining Fess : 500  , Annual Fee: 500 waved on annual spend (subject to terms)</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="Flipkart Axis Bank Credit Card"
-        data-benefits="Benifits :<br>✨ 5% Unlimited Cashback on every transaction<br>✨ Welcome Bonus: Benefits worth ₹600 upon activation<br>✨ Complimentary Airport Lounge Access<br>✨ Fuel Surcharge Waiver nationwide<br>✨ 15% discount on restaurant bills<br>✨ Annual Fee Waiver<br>✨ Special Flipkart EMI offers"
-        data-eligibility="Eligibility :<br>✔️ Employment: Salaried or self-employed<br>✔️ Age Group: 18-70 years<br>✔️ Customer must have good CIBIL score<br>✔️ Resident or non-resident of India<br>✔️ Documents Required: PAN Card photocopy or Form 60, Colour photograph, Latest payslip/Form 16/ITR as income proof, Residence Proof (any one: Passport, Ration Card, Electricity Bill, Landline Bill), Identity Proof (any one: Passport, Driving License, PAN Card, Aadhaar Card)"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=NTlHTTd2WlF4WVJMNGQzTGxGbmh2QT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- Swiggy HDFC Credit Card -->
-<div class="card" data-name="Swiggy HDFC Credit Card" data-fee="Lifetime Free" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>Swiggy HDFC Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Cashback & Swiggy Benefits
-    </div>
-    <div class="tag-row">
-      <span class="tag">Cashback</span>
-      <span class="tag">Swiggy</span>
-      <span class="tag">Dining</span>
-    </div>
-    <div class="fee">Joining Fee ₹500 | free wave on annual spend</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="Swiggy HDFC Credit Card"
-        data-benefits="✨ 10% Cashback on Swiggy spends<br>✨ 5% Cashback on Online spends<br>✨ 1% Cashback on all other purchases<br>✨ Free 3-month Swiggy One Membership worth ₹1199"
-        data-eligibility="✔️ Age: 21 to 70 years<br>✔️ Add-On Cardholder: above 18 years<br>✔️ Minimum Income: Rs.25,000/month (salaried), or Lakhs/annum (self-employed)<br>✔️ Customer must have good credit history, no payment defaults<br>✔️ Required Documents: Identity proof (PAN, Voter ID, Passport), Address proof (Aadhaar, Passport, Utility bills <3 months), Income proof (Bank statement last 3 months, Salary slips last 3 months)"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=MTJHcTVTczdOVGxGSStXd1diNDI2QT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- Airtel Axis Bank Credit Card -->
-<div class="card" data-name="Airtel Axis Bank Credit Card" data-fee="Lifetime Free" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>Airtel Axis Bank Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Cashback, Dining & Rewards
-    </div>
-    <div class="tag-row">
-      <span class="tag">Cashback</span>
-      <span class="tag">Dining</span>
-      <span class="tag">Rewards</span>
-    </div>
-    <div class="fee">Joining Fee : ₹500 , Annual Fee : ₹500</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="Airtel Axis Bank Credit Card"
-        data-benefits="Benifits :<br>✔️ ₹500 Amazon eVoucher on first transaction<br>✔️ 25% cashback on Airtel DTH, mobile, broadband & WiFi bills via Airtel Thanks App<br>✔️ 10% cashback on utility bills via Airtel Thanks App<br>✔️ 10% cashback on Swiggy, Zomato & BigBasket<br>✔️ Up to 15% off dining at partner restaurants<br>✔️ 4 complimentary lounge access (min ₹50,000 spent in last 3 months)"
-        data-eligibility="Eligibility :<br>✔️ Age: 18 to 70 years<br>✔️ Customer Type: New to Bank<br>✔️ Occupation: Salaried, Self-employed, Card-to-Card<br>✔️ CIBIL Score: 700+<br>✔️ Add-on Cardholder: 15+ years<br>✔️ Residency: Indian residents & NRIs<br>✔️ Required Documents: Aadhaar Card, PAN Card, Income Proof"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=QStSa0UxQWl5cjdYMmRrdVNMekpXZz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- ICICI Bank Credit Card -->
-<div class="card" data-name="ICICI Bank Credit Card" data-fee="Lifetime Free" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>ICICI Bank Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Cashback, Dining & Rewards
-    </div>
-    <div class="tag-row">
-      <span class="tag">Cashback</span>
-      <span class="tag">Dining</span>
-      <span class="tag">Shopping</span>
-      <span class="tag">Movies</span>
-    </div>
-    <div class="fee">Annual Fee: No Joining & Annual Fees (selected variants)</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="ICICI Bank Credit Card"
-        data-benefits="Benifits :<br>✔️ Exciting Discounts on Shopping, Dining & Movies<br>✔️ Earn Cash Rewards & ICICI Bank Rewards Offers<br>✔️ Complimentary Airport Lounge Access<br>✔️ Save on Fuel with Discounts & Surcharge Waivers<br>✔️ No Joining & Annual Fees on Selected Variants"
-        data-eligibility="Eligibility :<br>✔️ Only for New Customers (Not an existing Bank customer)<br>✔️ Age: 21 to 60 years<br>✔️ CIBIL Score: 750+ with no negative credit remarks<br>✔️ Employment: Salaried or Self-employed<br>✔️ Income: Rs.25,000/month (Salaried) or Rs.30,000/month (Self-employed)<br>✔️ Required Documents: Aadhaar Card, PAN Card, Address Proof, Income Proof (Salary Slip)"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=WDYrQS9xY0M1S2hkbW9zRU40dE5rZz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- Jupiter Lifetime Free Credit Card -->
-<div class="card" data-name="Jupiter Lifetime Free Credit Card" data-fee="Lifetime Free" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>Jupiter Lifetime Free Credit Card</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Cashback on Every Swipe
-    </div>
-    <div class="tag-row">
-      <span class="tag">Cashback</span>
-      <span class="tag">UPI Rewards</span>
-      <span class="tag">Lifetime Free</span>
-    </div>
-    <div class="fee">Annual Fee: Lifetime Free</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="Jupiter Lifetime Free Credit Card"
-        data-benefits="Benifits :<br>✔️ Lifetime Free - No annual or joining fees<br>✔️ Welcome Bonus: ₹250 on first in-app UPI transaction<br>✔️ Exciting Cashback: 2% cashback on every UPI spend<br>✔️ Extra Savings: Flat 0.4% cashback on all non-UPI purchases"
-        data-eligibility="Eligibility :<br>✔️ Age: Minimum 23 years<br>✔️ Employment: Only for salaried employees<br>✔️ Income: Minimum Rs.25,000/month<br>✔️ CIBIL Score: 740+<br>✔️ Documents Required: Aadhaar Card, PAN Card, Last 3 months' bank statements"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=bDRxNk54ZTVYVHZ2NTNPek9wRHhnQT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- IDFC First Bank WOW Life Credit Card -->
-<div class="card" data-name="IDFC First Bank WOW Life Credit Card" data-fee="Lifetime Free" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>IDFC FIRST BANK WOW LIFE</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Enjoy the perks of WOW Life now!
-    </div>
-    <div class="tag-row">
-      <span class="tag">No Credit History</span>
-      <span class="tag">Zero Fees</span>
-      <span class="tag">Reward Points</span>
-    </div>
-    <div class="fee">Annual Fee: Lifetime Free</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="IDFC First Bank WOW Life Credit Card"
-        data-benefits="Benifits :<br>✔️ No credit history and income proof required<br>✔️ Build & Improve Credit Score<br>✔️ Zero joining & renewal fees<br>✔️ 4x reward points on every spend<br>✔️ 7.25% interest p.a. on FD"
-        data-eligibility="Eligibility :<br>✔️ Age: 18+ years<br>✔️ Customers who want to improve low credit score<br>✔️ Minimum Fixed Deposit (FD) Amount: Existing IDFC FIRST Bank customers: INR 2,000; Others: INR 5,000"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=dm1QdGZHNkI5NytBb0hJdkpXVGNKUT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- ONE Metal Card -->
-<div class="card" data-name="ONE Metal Card" data-fee="Lifetime Free" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>ONE METAL CARD</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Stylish Metal Card – Make a Statement ✨
-    </div>
-    <div class="tag-row">
-      <span class="tag">Lifetime Free</span>
-      <span class="tag">5X Rewards</span>
-      <span class="tag">Exclusive Offers</span>
-    </div>
-    <div class="fee">Annual Fee: Lifetime Free</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="ONE Metal Card"
-        data-benefits="Benifits :<br>✔️ 5X Rewards on Top 2 Spend Categories<br>✔️ 100+ Brand Offers – Exclusive Deals & Discounts<br>✔️ Convert Bills to EMI – Flexible & Easy Payments<br>✔️ 1% Forex Markup on International Spends"
-        data-eligibility="Eligibility :<br>✔️ Employment: Salaried or self-employed<br>✔️ Age: 21-65 years<br>✔️ Credit Score: 730+<br>✔️ Resident and Non-resident of India"
-        data-documents="✔️ PAN Card photocopy or Form 60<br>✔️ Colour photograph<br>✔️ Latest payslip/Form 16/Tax return copy<br>✔️ Residence Proof (any one): Passport, Ration Card, Electricity bill, Landline telephone bill<br>✔️ Identity Proof (any one): Passport, Driving license, PAN card, Aadhaar card"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=akFOWlVZdmQ1RkdrT3RVeHozZldnZz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- Tata NeuCard -->
-<div class="card" data-name="Tata NeuCard" data-fee="Zero Joining Fee" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>Tata NeuCard</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Enjoy Extraordinary Rewards & Benefits 🎉
-    </div>
-    <div class="tag-row">
-      <span class="tag">Zero Joining Fee</span>
-      <span class="tag">Cashback Rewards</span>
-      <span class="tag">Airport Lounge Access</span>
-      <span class="tag">Tata Neu App Discounts</span>
-    </div>
-    <div class="fee">Annual Fee: Diffr. on variant</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="Tata NeuCard"
-        data-benefits="✔️ Save up to 10% on Tata Neu App purchases<br>✔️ Earn up to 1.5% cashback on everyday spends<br>✔️ Access up to 12 Airport Lounges across India"
-        data-eligibility="✔️ Age: 18-60 years<br>✔️ Employment: Salaried or Self-Employed<br>✔️ Income Criteria: Tata Neu Plus Card - ₹25,000/month (Salaried) / Lakhs ITR (Self-Employed), Tata Neu Infinity Card - ₹1,00,000/month (Salaried) / 12 Lakhs ITR (Self-Employed)"
-        data-documents="✔️ PAN Card<br>✔️ Aadhaar Card<br>✔️ Bank statement (last 6 months)<br>✔️ Salary slips (last 3 months) or ITR proof"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=WEhIWXdlVWlIbmh4QnRVUC91NllJZz09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- HDFC PIXEL PLAY Card -->
-<div class="card" data-name="HDFC PIXEL PLAY" data-fee="Varies" data-rating="5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>HDFC PIXEL PLAY</h3>
-      <span class="rating">★★★★★</span>
-    </div>
-    <div class="card-meta">
-      Personalized Rewards & Premium Benefits 💳
-    </div>
-    <div class="tag-row">
-      <span class="tag">Personalized Rewards</span>
-      <span class="tag">Unlimited Cashback</span>
-      <span class="tag">Airport Lounge Access</span>
-      <span class="tag">100% Digital Onboarding</span>
-      <span class="tag">Advanced Security</span>
-    </div>
-    <div class="fee">Joinng Fee: ₹500  Renewal Fee : ₹500  </div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="HDFC PIXEL PLAY"
-        data-benefits="Benifits :<br>✔️ Choose your reward categories & earn up to 10X rewards on top brands<br>✔️ Up to 3% unlimited cashback on select spends<br>✔️ Complimentary domestic & international airport lounge access<br>✔️ Fully digital onboarding and management via HDFC app<br>✔️ Set spend limits, lock/unlock card instantly & track transactions"
-        data-eligibility="Eligibility :<br>✔️ Age: 21-60 years (Salaried), 21-65 years (Self-Employed)<br>✔️ Minimum Income: ₹25,000/month (Salaried), ₹76.0 Lakh/year (Self-Employed)<br>✔️ Must have a regular source of income"
-        data-documents="✔️ Proof of Identity: PAN card, Voter ID, Passport<br>✔️ Proof of Address: Aadhaar, Passport, Utility bill (last 3 months)<br>✔️ Proof of Income: Bank statement (last 6 months), Salary slips (last 3 months)"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=bUZrazltK2haWFdjOHVSMEN2Tk4rUT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
-<!-- SBM ZET Credit Card -->
-<div class="card" data-name="SBM ZET Credit Card" data-fee="Lifetime-Free" data-rating="4.5">
-  <div class="card-body">
-    <div class="card-title">
-      <h3>SBM ZET Credit Card</h3>
-      <span class="rating">★★★★☆</span>
-    </div>
-    <div class="card-meta">
-      Smart, Secure & Rewarding 💳<br> Minimum FD required 2k-5k
-    </div>
-    <div class="tag-row">
-      <span class="tag">Lifetime-Free Card</span>
-      <span class="tag">RBI-Insured FD</span>
-      <span class="tag">Earn up to 7% Interest</span>
-      <span class="tag">No Income Proof Required</span>
-      <span class="tag">UPI-Enabled</span>
-    </div>
-    <div class="fee">Annual Fee: Lifetime-Free</div>
-    <div class="action-row">
-      <button class="know-btn"
-        data-title="SBM ZET Credit Card"
-        data-benefits="✔️ Build or improve your credit score with ease<br>✔️ Earn up to 7% interest on linked FD<br>✔️ FD starts from just ₹5,000<br>✔️ 100% digital onboarding<br>✔️ No income proof required"
-        data-eligibility="✔️ Age: 22-40 years<br>✔️ Low or no credit score (CIBIL < 700)<br>✔️ Salaried employment"
-        data-documents="✔️ Aadhaar Card<br>✔️ PAN Card"
-      >Know More</button>
-      <a href="https://leads.banksathi.com/?h=VDU2Y1podW5xYkcvcWFJWGIxbkdzUT09" class="apply-btn" target="_blank">Apply Now</a>
-    </div>
-  </div>
-</div>
 
   </section>
 
@@ -905,18 +176,21 @@ footer .copyright{margin-top:12px; font-size:0.85rem; color:#888;}
 <footer>
   <div class="footer-container">
     <p>Need help?
-    <a href="https://api.whatsapp.com/send?phone=+919610841436" target="_blank" class="chat-btn">Chat on WhatsApp</p></a>
+    <a href="https://api.whatsapp.com/send?phone=+919610841436" target="_blank" class="chat-btn">Chat on WhatsApp</a></p>
     <div class="copyright">© 2025 Credit Line. All Rights Reserved.</div>
   </div>
 </footer>
 
 <!-- Modal -->
-<div id="cardModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2 id="modalTitle">Card Title</h2>
-    <p id="modalBenefits"></p>
-    <p id="modalEligibility"></p>
+<div id="cardModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+  <div class="bg-white rounded-xl shadow-lg w-11/12 md:w-1/2 p-6 relative">
+    <span class="absolute top-3 right-4 text-2xl cursor-pointer font-bold text-gray-600 close">&times;</span>
+    <h2 id="modalTitle" class="text-xl font-bold text-gray-800 mb-3"></h2>
+    <p id="modalBenefits" class="text-gray-700 text-sm leading-relaxed"></p>
+    <p id="modalEligibility" class="text-gray-700 text-sm leading-relaxed mt-3"></p>
+    <div class="text-right mt-5">
+      <button onclick="document.getElementById('cardModal').classList.add('hidden')" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold">Close</button>
+    </div>
   </div>
 </div>
 
@@ -926,29 +200,28 @@ const modal = document.getElementById('cardModal');
 const modalTitle = document.getElementById('modalTitle');
 const modalBenefits = document.getElementById('modalBenefits');
 const modalEligibility = document.getElementById('modalEligibility');
+
 document.querySelectorAll('.know-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     modalTitle.innerHTML = btn.dataset.title;
-    modalBenefits.innerHTML = btn.dataset.benefits.replace(/\n/g,'<br>');
-    modalEligibility.innerHTML = btn.dataset.eligibility.replace(/\n/g,'<br>');
-    modal.style.display='block';
+    modalBenefits.innerHTML = btn.dataset.benefits;
+    modalEligibility.innerHTML = btn.dataset.eligibility;
+    modal.classList.remove('hidden');
   });
 });
-document.querySelector('.close').onclick = ()=>{ modal.style.display='none'; }
-window.onclick = e=>{ if(e.target==modal) modal.style.display='none'; }
+document.querySelector('.close').onclick = ()=>{ modal.classList.add('hidden'); }
 
 // Search & Sort
 const searchInput = document.getElementById('searchInput');
 const sortSelect = document.getElementById('sortSelect');
-const cards = document.querySelectorAll('.card');
+const cards = document.querySelectorAll('[data-name]');
 
 searchInput.addEventListener('input', ()=>{
   const val = searchInput.value.toLowerCase();
   cards.forEach(card=>{
-    card.style.display = card.dataset.name.toLowerCase().includes(val)? 'flex':'none';
+    card.style.display = card.dataset.name.toLowerCase().includes(val)? 'block':'none';
   });
 });
-
 sortSelect.addEventListener('change', ()=>{
   const grid = document.getElementById('cardGrid');
   let arr = Array.from(cards);
