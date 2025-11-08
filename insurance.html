@@ -1,204 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Insurance — Credit Line</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --primary:#6610f2;
-  --accent:#0d6efd;
-  --muted:#666;
-  --card-bg:#fff;
-  --page-bg:#f5f7fb;
-  --radius:12px;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Inter',sans-serif;background:var(--page-bg);color:#222;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insurance Page - Credit Line</title>
+  <style>
+    :root {
+      --primary: #0047AB;
+      --accent: #FFD700;
+      --bg: #f5f7fa;
+    }
 
-/* Topbar */
-.topbar{
-  background:linear-gradient(90deg,var(--accent),var(--primary));
-  color:#fff;
-  padding:14px 20px;
-  display:flex;
-  align-items:center;
-  gap:16px;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-.topbar a.logo{color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;}
-.topbar .back{
-  background:rgba(255,255,255,0.12);
-  padding:8px 10px;
-  border-radius:8px;
-  text-decoration:none;
-  color:#fff;
-  font-weight:600;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
 
-/* Container */
-.container{max-width:800px;margin:24px auto;padding:0 18px 60px;}
+    body {
+      background: var(--bg);
+      color: #222;
+      line-height: 1.5;
+    }
 
-/* Heading */
-.heading{text-align:center;margin-bottom:20px;}
-.heading h1{font-size:1.8rem;color:var(--primary);font-weight:800;}
-.heading p{color:var(--muted);margin-top:10px;font-size:1rem;line-height:1.6;}
+    /* Header */
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
 
-/* Notice Box */
-.notice-box{
-  background:#fff;
-  padding:20px;
-  border-radius:var(--radius);
-  box-shadow:0 6px 20px rgba(20,20,40,0.06);
-  margin-top:20px;
-  text-align:center;
-}
-.notice-box strong{color:var(--primary);}
-.notice-box p{color:#333;font-size:1rem;line-height:1.6;}
+    .back-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      font-size: 16px;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
 
-/* Form */
-.form-card{
-  background:#fff;
-  margin-top:30px;
-  padding:20px;
-  border-radius:var(--radius);
-  box-shadow:0 6px 20px rgba(20,20,40,0.06);
-}
-.form-card h2{
-  text-align:center;
-  color:var(--primary);
-  font-size:1.4rem;
-  margin-bottom:18px;
-  font-weight:800;
-}
-.form-group{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  margin-bottom:14px;
-}
-.form-group label{
-  font-size:0.9rem;
-  font-weight:600;
-  color:#444;
-}
-.form-group input, .form-group select{
-  padding:10px;
-  font-size:1rem;
-  border:1px solid #ccc;
-  border-radius:8px;
-  outline:none;
-  transition:border-color 0.2s ease;
-}
-.form-group input:focus, .form-group select:focus{
-  border-color:var(--primary);
-}
-.submit-btn{
-  width:100%;
-  background:linear-gradient(90deg,var(--accent),var(--primary));
-  color:#fff;
-  padding:12px;
-  font-size:1rem;
-  font-weight:700;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  transition:transform 0.15s ease;
-}
-.submit-btn:hover{transform:translateY(-2px);}
+    header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      flex: 1;
+      text-align: center;
+      margin-right: 34px;
+    }
 
-/* Footer */
-footer{margin-top:40px;background:#343a40;color:#fff;padding:20px;text-align:center;border-radius:12px 12px 0 0;}
-footer .footer-cta p{font-size:0.95rem;margin-bottom:10px;line-height:1.4;}
-footer .whatsapp-btn{display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:10px 18px;border-radius:8px;text-decoration:none;transition:transform 0.15s ease;}
-footer .whatsapp-btn:hover{transform:translateY(-3px);}
+    /* Card */
+    .card {
+      background: linear-gradient(90deg, #fffbe8, #ffffff);
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      margin: 16px;
+      transition: transform 0.2s ease;
+    }
 
-/* Responsive */
-@media(max-width:520px){
-  .heading h1{font-size:1.4rem;}
-  .notice-box p{font-size:0.95rem;}
-  .form-group input, .form-group select{font-size:0.95rem;}
-}
-</style>
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-header img {
+      width: 70px;
+      height: auto;
+    }
+
+    .card h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .section-title {
+      margin-top: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      color: #000;
+    }
+
+    .benefits {
+      margin-top: 6px;
+      padding-left: 18px;
+    }
+
+    .benefits li {
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: #444;
+    }
+
+    .reward {
+      margin-top: 10px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .buy-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .buy-btn:hover {
+      background: #003a8c;
+    }
+
+    /* Footer Button */
+    .footer-btn {
+      display: block;
+      width: 90%;
+      margin: 25px auto 40px auto;
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .footer-btn:hover {
+      background: #ffcc00;
+    }
+  </style>
 </head>
 <body>
 
-<!-- Topbar -->
-<div class="topbar">
-  <a class="back" href="index.html">← Back</a>
-  <a class="logo" href="index.html">Credit Line</a>
-</div>
+  <!-- Header -->
+  <header>
+    <button class="back-btn" onclick="history.back()">&#8592;</button>
+    <h1>Insurance Page</h1>
+  </header>
 
-<main class="container">
-  <!-- Heading -->
-  <div class="heading">
-    <h1>Insurance Services</h1>
-    <p>🎉 हमारी <strong>Insurance Services</strong>  जल्द ही शुरू होने वाली हैं!<br>  
-    अगर आपको अभी Insurance चाहिए, तो नीचे फॉर्म भरें — हमारे Advisor आपसे संपर्क करेंगे।</p>
+  <!-- Product 1: 2-Wheeler -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Choice Connect 2-Wheeler Motor Insurance</h2>
+      <img src="BIKE.JPG" alt="Bike Insurance Logo">
+    </div>
+
+    <p class="section-title">Top benefits for you:</p>
+    <ul class="benefits">
+      <li>🚗 Covers repair costs, theft & total loss of your vehicle</li>
+      <li>🚑 Pays for injury, death, or property damage caused to others</li>
+      <li>🔨 Cashless repairs at network garages – no upfront payments</li>
+      <li>🚨 Protection against floods, earthquakes, fires, riots & theft</li>
+      <li>🪙 No-Claim Bonus: Get up to 50% discount for claim-free years</li>
+    </ul>
+
+    <p class="section-title">Why apply from here:</p>
+    <ul class="benefits">
+      <li>✔️ 100% digital process — fast & secure</li>
+      <li>✔️ Minimal documentation required</li>
+    </ul>
+
+    <p class="reward">Reward: Up to ₹350 per sale</p>
+    <a href="https://wee.bnking.in/c/ZWQ1NmUyM" target="_blank">
+      <button class="buy-btn">BUY NOW</button>
+    </a>
+
+    <p style="margin-top:8px;font-size:13px;">For any assistance, call our support team at <b>9610841436</b></p>
   </div>
 
-  <!-- Notice -->
-  <div class="notice-box">
-    <p>✅ सभी प्रकार के <strong>Bike, Car, Life/Term और Health Insurance</strong> जल्द ही लाइव होंगे।<br>
-    📲 अभी Insurance लेने के लिए हमारे Advisor से बात करें!</p>
+  <!-- Product 2: 4-Wheeler -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Choice Connect 4-Wheeler Motor Insurance</h2>
+      <img src="CAR.png" alt="Car Insurance Logo">
+    </div>
+
+    <p class="section-title">Top benefits for you:</p>
+    <ul class="benefits">
+      <li>🚗 Covers repair costs, theft & total loss of your vehicle</li>
+      <li>🚑 Pays for injury, death, or property damage caused to others</li>
+      <li>🔨 Cashless repairs at network garages – no upfront payments</li>
+      <li>🚨 Protection against floods, earthquakes, fires, riots & theft</li>
+      <li>🪙 No-Claim Bonus: Get up to 50% discount for claim-free years</li>
+    </ul>
+
+    <p class="section-title">Why apply from here:</p>
+    <ul class="benefits">
+      <li>✔️ 100% digital process — fast & secure</li>
+      <li>✔️ Minimal documentation required</li>
+    </ul>
+
+    <p class="reward">Reward: Up to ₹2000 per sale</p>
+    <a href="https://wee.bnking.in/c/NWQ1NjY2N" target="_blank">
+      <button class="buy-btn">BUY NOW</button>
+    </a>
+
+    <p style="margin-top:8px;font-size:13px;">For any assistance, call our support team at <b>9610841436</b></p>
   </div>
 
-  <!-- Lead Form -->
-  <div class="form-card">
-    <h2>Insurance Advisor से बात करें</h2>
-    <form id="insuranceForm">
-      <div class="form-group">
-        <label for="name">पूरा नाम *</label>
-        <input type="text" id="name" required placeholder="अपना नाम लिखें">
-      </div>
-      <div class="form-group">
-        <label for="phone">मोबाइल नंबर *</label>
-        <input type="tel" id="phone" required placeholder="10 अंकों का नंबर">
-      </div>
-      <div class="form-group">
-        <label for="type">Insurance का प्रकार *</label>
-        <select id="type" required>
-          <option value="">चुनें</option>
-          <option>Bike Insurance</option>
-          <option>Car Insurance</option>
-          <option>Life / Term Insurance</option>
-          <option>Health Insurance</option>
-        </select>
-      </div>
-      <button type="submit" class="submit-btn">WhatsApp पर Submit करें</button>
-    </form>
-  </div>
-</main>
-
-<!-- Footer -->
-<footer>
-  <div class="footer-cta">
-    <p><strong>Need help choosing an insurance plan?</strong><br>
-    Chat with Raj on WhatsApp for guidance and personalized suggestions.</p>
-    <a class="whatsapp-btn" href="https://wa.me/919610841436" target="_blank">Chat on WhatsApp</a>
-  </div>
-  <p style="margin-top:12px; font-size:0.8em; text-align:center;">© 2025 Credit Line</p>
-</footer>
-
-<script>
-// WhatsApp form submit
-document.getElementById("insuranceForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const type = document.getElementById("type").value.trim();
-
-  const message = `📄 *Insurance Request*\n👤 नाम: ${name}\n📞 मोबाइल: ${phone}\n🛡️ प्रकार: ${type}\n\nकृपया संपर्क करें।`;
-  const whatsappNumber = "919610841436"; // ← yahan aap apna number daal sakte ho
-  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
-});
-</script>
+  <!-- Footer Button -->
+  <div class="footer-btn">Need Expert Help? Contact Our Support Team</div>
 
 </body>
 </html>
-
-
